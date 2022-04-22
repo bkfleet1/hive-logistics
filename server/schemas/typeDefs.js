@@ -12,7 +12,8 @@ const typeDefs = gql`
     address: String
     city: String
     zipCode: String
-    #savedActions: [Actions]
+    #changed
+    savedApiary: [Apiary]
   }
   # type Actions {
   #   _id: ID!
@@ -24,9 +25,11 @@ const typeDefs = gql`
   #   link: String
   #   savedUsers: [User]
   # }
-  # type Apiary {
-  #   name: String
-  # }
+  type Apiary {
+    name: String
+   # savedHive: [Hive]
+    #savedHive: [ShareFeeder]
+  }
 
   # type Hive {
   #   name: String
@@ -59,7 +62,8 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    # addAction(id: String!, actionType: String!, resource: String!,quantity: Int!,uam: String!,actionDate: date!): Auth
+    addApiary(name:String!): Auth
+      #id: String!, actionType: String!, resource: String!,quantity: Int!,uam: String!,actionDate: date!): Auth
   }
 `;
 

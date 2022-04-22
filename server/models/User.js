@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 
 // import schema from Actions.js
-//const actionSchema = require("./Actions");
+const apiarySchema = require("./Actions");
 
 const userSchema = new Schema(
   {
@@ -42,7 +42,8 @@ const userSchema = new Schema(
       required: true,
     },
     // set savedActions to be an array of data that adheres to the actionsSchema
-    // savedActions: [actionSchema],
+    //changed
+     savedApiary: [apiarySchema],
   },
   // set this to use virtual below
   {

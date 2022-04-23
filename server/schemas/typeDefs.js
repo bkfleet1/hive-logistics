@@ -12,8 +12,8 @@ const typeDefs = gql`
     address: String
     city: String
     zipCode: String
-    #changed
-    seeApiary: [Apiary]
+    apiaryCount: Int
+    savedApiary: [Apiary]
   }
   # type Actions {
   #   _id: ID!
@@ -69,7 +69,7 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    saveApiary(apiaryData: ApiaryInput): User
+    addApiary(apiaryData: ApiaryInput): User
     removeApiary(apiaryId: ID!): User
   }
 `;

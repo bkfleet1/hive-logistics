@@ -13,15 +13,15 @@ import { SAVE_APIARY } from "../utils/mutations";
 import Auth from "../utils/auth";
 import { saveApiaryIds, getSavedApiaryIds } from "../utils/localStorage";
 
-const saveApiary = () => {
+const addApiary = () => {
   // create state for holding returned data
-  const [saveApiary, setApiary] = useState([]);
+  const [addApiary, setApiary] = useState([]);
   // create state for holding our search field data
   const [addInput, setApiaryInput] = useState("");
 
   // create state to hold saved apiaryId values
   const [savedApiaryIds, setSavedApiaryIds] = useState(getSavedApiaryIds());
-  const [saveApiary, { error }] = useMutation(SAVE_APIARY);
+  const [addApiary, { error }] = useMutation(SAVE_APIARY);
 
   // set up useEffect hook to save `savedapiaryIds` list to localStorage on component unmount
   // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
@@ -63,7 +63,7 @@ const saveApiary = () => {
     }
 
     try {
-      await saveApiary({
+      await addApiary({
         variables: { apiaryData: { ...apiaryToSave } },
       });
       console.log(savedApiaryIds);
@@ -103,12 +103,12 @@ const saveApiary = () => {
 
       <Container>
         <h2>
-          {addedApiary.length
+          {savedApiary.length
             ? `Viewing ${addedApiary.length} results:`
             : "Added for a Apiary to begin"}
         </h2>
         <CardColumns>
-          {addedApiary.map((book) => {
+          {savedApiary.map((book) => {
             return (
               <Card key={apiary.apiaryId} border="dark">
                 <Card.Body>

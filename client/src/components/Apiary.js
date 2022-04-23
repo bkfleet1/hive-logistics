@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { useMutation } from "@apollo/client";
-import { SAVE_APIARY } from "../utils/mutations";
+import { ADD_APIARY } from "../utils/mutations";
 import Auth from "../utils/auth";
 
 const Apiary = () => {
@@ -14,7 +14,7 @@ const Apiary = () => {
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
 
-  const [saveApiary, { error }] = useMutation(SAVE_APIARY);
+  const [addApiary, { error }] = useMutation(ADD_APIARY);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -32,10 +32,10 @@ const Apiary = () => {
     }
 
     try {
-      const { data } = await saveApiary({
+      const { data } = await addApiary({
         variables: { ...apiaryFormData },
       });
-      Auth.login(data.saveApiary.token);
+      Auth.login(data.addApiary.token);
     } catch (e) {
       console.error(e);
     }
@@ -56,13 +56,13 @@ const Apiary = () => {
           show={showAlert}
           variant="danger"
         >
-          {error && <br> Login failed.</br>}
+          {error && <br>Added Apiary Failed.</br>}
         </Alert>
 
         <Form.Group>
-          <Form.Label htmlFor="name">Apiary</Form.Label>
+          <Form.Label htmlFor="name">Name</Form.Label>
           <Form.Control
-            type="name"
+            type="text"
             placeholder="Name:"
             name="name"
             onChange={handleInputChange}

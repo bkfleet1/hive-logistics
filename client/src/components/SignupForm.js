@@ -15,7 +15,7 @@ const SignupForm = () => {
     address: "",
     city: "",
     state: "",
-    zipCode: ""
+    zipCode: "",
   });
   // set state for form validation
   const [validated] = useState(false);
@@ -49,7 +49,7 @@ const SignupForm = () => {
     }
 
     setUserFormData({
-       fName: "",
+      fName: "",
       lName: "",
       username: "",
       email: "",
@@ -75,7 +75,7 @@ const SignupForm = () => {
           {error && <br>Sign-up failed.</br>}
         </Alert>
 
-         <Form.Group>
+        <Form.Group>
           <Form.Label htmlFor="fName">First Name</Form.Label>
           <Form.Control
             type="text"
@@ -119,7 +119,7 @@ const SignupForm = () => {
             Email is required!
           </Form.Control.Feedback>
         </Form.Group>
-        
+
         <Form.Group>
           <Form.Label htmlFor="username">Username</Form.Label>
           <Form.Control
@@ -176,7 +176,7 @@ const SignupForm = () => {
             value={userFormData.city}
             required
           />
-{/* 
+          {/* 
           <Form.Control.Feedback type="invalid">
             City is required!
           </Form.Control.Feedback> */}
@@ -226,7 +226,6 @@ const SignupForm = () => {
               userFormData.city &&
               userFormData.state &&
               userFormData.zipCode
-              
             )
           }
           type="submit"

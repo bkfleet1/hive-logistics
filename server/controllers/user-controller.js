@@ -42,14 +42,14 @@ module.exports = {
     const token = signToken(user);
     res.json({ token, user });
   },
-  // save a action to a user's `savedApiary` field by adding it to the set (to prevent duplicates)
+  // save a apiary to a user's `savedApiary` field by adding it to the set (to prevent duplicates)
   // user comes from `req.user` created in the auth middleware function
-  async saveApiary({ user, body }, res) {
+  async addApiary({ user, body }, res) {
     console.log(user);
     try {
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
-        { $addToSet: { saveApiary: body } },
+        { $addToSet: { addApiary: body } },
         { new: true, runValidators: true }
       );
       return res.json(updatedUser);

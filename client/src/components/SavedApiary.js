@@ -48,14 +48,14 @@ const SavedApiary = () => {
     <>
       <Jumbotron fluid className="text-light bg-dark">
         <Container>
-          <h1>Viewing {userData.userapiaryId}'s Apiary!</h1>
+          <h1>Viewing {userData.username}'s apiaries!</h1>
         </Container>
       </Jumbotron>
       <Container>
         <h2>
           {userData.savedApiary?.length
             ? `Viewing ${userData.savedApiary.length} saved ${
-                userData.savedApiary.length === 1 ? "apiary" : "apiary"
+                userData.savedApiary.length === 1 ? "apiary" : "apiaries"
               }:`
             : "You have no saved apiary!"}
         </h2>
@@ -63,9 +63,6 @@ const SavedApiary = () => {
           {userData.savedApiary?.map((apiary) => {
             return (
               <Card key={apiary.apiaryId} border="dark">
-                {/* {book.image ? (
-                  <Card.Img src={book.image} alt={`The cover for ${apiary.apiaryId}`} variant='top' />
-                ) : null} */}
                 <Card.Body>
                   <Card.Title>{apiary.name}</Card.Title>
                   <p className="small">Name: {apiary.name}</p>
@@ -73,7 +70,7 @@ const SavedApiary = () => {
                     className="btn-block btn-danger"
                     onClick={() => handleDeleteApiary(apiary.apiaryId)}
                   >
-                    Delete this apiary!
+                    Delete this Apiary!
                   </Button>
                   {error && (
                     <span className="ml-2">Something went wrong...</span>

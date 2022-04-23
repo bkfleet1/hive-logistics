@@ -7,12 +7,12 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import SignupForm from "./components/SignupForm";
-import LoginForm from "./components/LoginForm";
 import Home from "./components/Home";
+import LoginForm from "./components/LoginForm";
 import Apiary from "./components/Apiary";
 import SavedApiary from './components/SavedApiary';
+import Navbar from "./components/Navbar";
+import SignupForm from "./components/SignupForm";
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem("id_token");
@@ -40,7 +40,7 @@ function App() {
         <>
           <Navbar />
           <Switch>
-           {/* <Route exact path="/" component={SignupForm} /> */}
+           <Route exact path="/" component={Home} />
             <Route exact path="/" component={LoginForm} />
             <Route exact path="/saved" component={Apiary} />
             <Route exact path='/saved' component={SavedApiary} />

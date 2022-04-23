@@ -1,5 +1,11 @@
 const { Schema } = require("mongoose");
 const Schema = hiveSchema({
+
+  shareFeederId: {
+    type: String,
+    required: true
+  },
+  
   latitude: 
     {
       type: String,

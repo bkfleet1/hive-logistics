@@ -24,20 +24,9 @@ export const ADD_USER = gql`
   }
 `;
 
-// export const ADD_APIARY = gql`
-//   mutation saveApiary($_id: String!) {
-//     saveApiary(_id: $_id) {
-//       token
-//       user {
-//         _id
-//       }
-//     }
-//   }
-// `;
-
-export const SAVE_APIARY = gql`
-  mutation saveApiary($apiaryData: ApiaryInput!) {
-    saveApiary(apiaryData: $apiaryData) {
+export const ADD_APIARY = gql`
+  mutation addApiary($apiaryData: ApiaryInput!) {
+    addApiary(apiaryData: $apiaryData) {
       _id
       username
       email

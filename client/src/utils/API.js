@@ -28,8 +28,8 @@ export const loginUser = (userData) => {
   });
 };
 
-// save action data for a logged in user
-export const seeApiary = (apiaryData, token) => {
+// save apiary data for a logged in user
+export const addApiary = (apiaryData, token) => {
   return fetch('/api/users', {
     method: 'PUT',
     headers: {
@@ -41,7 +41,7 @@ export const seeApiary = (apiaryData, token) => {
 };
 
 
-// remove saved book data for a logged in user
+// remove saved apiary data for a logged in user
 export const deleteApiary = (apiaryId, token) => {
   return fetch(`/api/users/apiary/${apiaryId}`, {
     method: 'DELETE',

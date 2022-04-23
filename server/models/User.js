@@ -41,9 +41,8 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    // set savedActions to be an array of data that adheres to the actionsSchema
-    //changed
-     seeApiary: [apiarySchema],
+    // set savedApiary to be an array of data that adheres to the actionsSchema
+     savedApiary: [apiarySchema],
   },
   // set this to use virtual below
   {
@@ -67,6 +66,11 @@ userSchema.pre("save", async function (next) {
 userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
+
+// when we query a user, we'll also get another field called `apiaryCount` with the number of saved apiary we have
+userSchema.virtual('apiaryCount').get(function () {
+  return this.savedApiary.length;
+});
 
 const User = model("User", userSchema);
 module.exports = User;

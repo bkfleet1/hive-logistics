@@ -2,29 +2,29 @@ const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 
 // import schema from Actions.js
-const apiarySchema = require("./Actions");
+const apiarySchema = require("./Apiary");
 
 const userSchema = new Schema(
   {
     fName: {
       type: String,
-      required: true,
+      //required: true,
     },
     lName: {
       type: String,
-      required: true,
+      //required: true,
     },
     address: {
       type: String,
-      required: true,
+      //required: true,
     },
     city: {
       type: String,
-      required: true,
+     // required: true,
     },
     zipCode: {
       type: String,
-      required: true,
+      //required: true,
     },
     username: {
       type: String,
@@ -43,7 +43,7 @@ const userSchema = new Schema(
     },
     // set savedActions to be an array of data that adheres to the actionsSchema
     //changed
-     savedApiary: [apiarySchema],
+     seeApiary: [apiarySchema],
   },
   // set this to use virtual below
   {

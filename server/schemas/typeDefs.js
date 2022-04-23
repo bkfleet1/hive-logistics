@@ -13,7 +13,7 @@ const typeDefs = gql`
     city: String
     zipCode: String
     #changed
-    savedApiary: [Apiary]
+    seeApiary: [Apiary]
   }
   # type Actions {
   #   _id: ID!
@@ -26,9 +26,16 @@ const typeDefs = gql`
   #   savedUsers: [User]
   # }
   type Apiary {
-    name: String
-   # savedHive: [Hive]
+    apiaryId: String!
+    name: [String]
+
+    # savedHive: [Hive]
     #savedHive: [ShareFeeder]
+  }
+
+  input ApiaryInput {
+    name: [String]
+    apiaryId: String
   }
 
   # type Hive {
@@ -62,8 +69,8 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    addApiary(name:String!): Auth
-      #id: String!, actionType: String!, resource: String!,quantity: Int!,uam: String!,actionDate: date!): Auth
+    saveApiary(apiaryData: ApiaryInput): User
+    removeApiary(apiaryId: ID!): User
   }
 `;
 

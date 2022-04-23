@@ -6,14 +6,9 @@ export const GET_ME = gql`
       _id
       username
       email
-      actions {
-        _id
-        actionType
-        resource
-        quantity
-        uam
-        actionDate
-        link
+      savedApiary {
+        apiaryId
+        name
       }
     }
   }

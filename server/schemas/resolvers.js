@@ -39,20 +39,29 @@ const resolvers = {
       return { token, user };
     },
 
-    //changed
-
-        apiary: async (_parent, { actionData }, context) => {
-          if (context.user) {
-            const updatedUser = await User.findByIdAndUpdate(
+    saveApiary: async (_parent, { apiaryData }, context) => {
+      if (context.user) {
+          const updatedUser = await User.findByIdAndUpdate(
               { _id: context.user._id },
-              { $push: { savedAction: actionData } },
+              { $push: { savedApiary: apiaryData } },
               { new: true }
-            );
-            return updatedUser;
-          }
-          throw new AuthenticationError("You need to be logged in!");
-        },
+          );
+          return updatedUser;
+      }
+      throw new AuthenticationError('You need to be logged in!');
   },
+  removeApiary: async (_parent, { apiaryId }, context) => {
+      if (context.user) {
+          const updatedUser = await User.findOneAndUpdate(
+              { _id: context.user._id },
+              { $pull: { savedApiary: { apiaryId } } },
+              { new: true }
+          );
+          return updatedUser;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+  }
+}
 };
 
 module.exports = resolvers;

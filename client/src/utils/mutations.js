@@ -24,11 +24,39 @@ export const ADD_USER = gql`
   }
 `;
 
-export const ADD_APIARY = gql`
-  mutation addApiary($name: String!) {
-    addApiary(name: $name) {
-      token
-      user {
+// export const ADD_APIARY = gql`
+//   mutation saveApiary($_id: String!) {
+//     saveApiary(_id: $_id) {
+//       token
+//       user {
+//         _id
+//       }
+//     }
+//   }
+// `;
+
+export const SAVE_APIARY = gql`
+  mutation saveApiary($apiaryData: ApiaryInput!) {
+    saveApiary(apiaryData: $apiaryData) {
+      _id
+      username
+      email
+      savedApiary {
+        apiaryId
+        name
+      }
+    }
+  }
+`;
+
+export const REMOVE_APIARY = gql`
+  mutation removeApiary($apiary: NAME!) {
+    removeApiary(_id: $_id) {
+      _id
+      username
+      email
+      savedApiary {
+        apiaryId
         name
       }
     }

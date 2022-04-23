@@ -29,16 +29,27 @@ export const loginUser = (userData) => {
 };
 
 // save action data for a logged in user
-// export const seeAction = (actionData, token) => {
-//   return fetch('/api/users', {
-//     method: 'PUT',
-//     headers: {
-//       'Content-Type': 'application/json',
-//       authorization: `Bearer ${token}`,
-//     },
-//     body: JSON.stringify(actionData),
-//   });
-// };
+export const seeApiary = (apiaryData, token) => {
+  return fetch('/api/users', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(apiaryData),
+  });
+};
+
+
+// remove saved book data for a logged in user
+export const deleteApiary = (apiaryId, token) => {
+  return fetch(`/api/users/apiary/${apiaryId}`, {
+    method: 'DELETE',
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
+};
 
 
 

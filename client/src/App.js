@@ -11,7 +11,8 @@ import Navbar from "./components/Navbar";
 import SignupForm from "./components/SignupForm";
 import LoginForm from "./components/LoginForm";
 import Home from "./components/Home";
-import Apiary from "./pages/Apiary"
+import Apiary from "./components/Apiary";
+import SavedApiary from './components/SavedApiary';
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem("id_token");
@@ -39,10 +40,10 @@ function App() {
         <>
           <Navbar />
           <Switch>
-            {/* <Route exact path="/" component={Home} /> */}
-            {/* <Route exact path="/saved" component={SignupForm} />
-            <Route exact path="/saved" component={LoginForm} /> */}
+           {/* <Route exact path="/" component={SignupForm} /> */}
+            <Route exact path="/" component={LoginForm} />
             <Route exact path="/saved" component={Apiary} />
+            <Route exact path='/saved' component={SavedApiary} />
             <Route render={() => <h1 className="display-2">Wrong page!</h1>} />
           </Switch>
         </>

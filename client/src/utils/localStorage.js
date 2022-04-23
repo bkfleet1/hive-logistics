@@ -1,32 +1,32 @@
-// export const getActionsIds = () => {
-//   const savedActionsIds = localStorage.getItem('saved_actions')
-//     ? JSON.parse(localStorage.getItem('saved_actions'))
-//     : [];
-
-//   return savedActionsIds;
-// };
-
-// export const saveActionIds = (actionIdArr) => {
-//   if (actionIdArr.length) {
-//     localStorage.setItem('saved_actions', JSON.stringify(actionIdArr));
-//   } else {
-//     localStorage.removeItem('saved_actions');
-//   }
-// };
-
-export const getIds = () => {
-  const savedActionsIds = localStorage.getItem('id')
-    ? JSON.parse(localStorage.getItem('id'))
+export const getSavedApiaryIds = () => {
+  const savedApiaryIds = localStorage.getItem("saved_apiary")
+    ? JSON.parse(localStorage.getItem("saved_apiary"))
     : [];
 
-  return savedActionsIds;
+  return savedApiaryIds;
 };
 
-export const saveIds = (idArr) => {
-  if (idArr.length) {
-    localStorage.setItem('id', JSON.stringify(idArr));
+export const saveApiaryIds = (apiaryIdArr) => {
+  if (apiaryIdArr.length) {
+    localStorage.setItem("saved_apiary", JSON.stringify(apiaryIdArr));
   } else {
-    localStorage.removeItem('id');
+    localStorage.removeItem("saved_apiary");
   }
 };
 
+export const removeApiaryId = (apiaryId) => {
+  const savedApiaryIds = localStorage.getItem("saved_apiary")
+    ? JSON.parse(localStorage.getItem("saved_apiary"))
+    : null;
+
+  if (!savedApiaryIds) {
+    return false;
+  }
+
+  const updatedSavedApiaryIds = savedApiaryIds?.filter(
+    (savedApiaryId) => savedApiaryId !== apiaryId
+  );
+  localStorage.setItem("saved_apiary", JSON.stringify(updatedSavedApiaryIds));
+
+  return true;
+};

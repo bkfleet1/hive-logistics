@@ -7,15 +7,15 @@ import Auth from "../utils/auth";
 const SignupForm = () => {
   // set initial form state
   const [userFormData, setUserFormData] = useState({
-     fName: "",
-      lName: "",
-      username: "",
-      email: "",
-      password: "",
-      address: "",
-      city: "",
-      state: "",
-      zipCode: "",
+    fName: "",
+    lName: "",
+    username: "",
+    email: "",
+    password: "",
+    address: "",
+    city: "",
+    state: "",
+    zipCode: ""
   });
   // set state for form validation
   const [validated] = useState(false);
@@ -49,7 +49,7 @@ const SignupForm = () => {
     }
 
     setUserFormData({
-      fName: "",
+       fName: "",
       lName: "",
       username: "",
       email: "",
@@ -75,36 +75,34 @@ const SignupForm = () => {
           {error && <br>Sign-up failed.</br>}
         </Alert>
 
-        <Form.Group>
+         <Form.Group>
           <Form.Label htmlFor="fName">First Name</Form.Label>
           <Form.Control
-            type="fName"
+            type="text"
             placeholder="Your First Name"
             name="fName"
             onChange={handleInputChange}
             value={userFormData.fName}
             required
           />
-
-          <Form.Control.Feedback type="invalid">
+          {/* <Form.Control.Feedback type="invalid">
             First Name is required!
-          </Form.Control.Feedback>
+          </Form.Control.Feedback> */}
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor="lName">First Name</Form.Label>
+          <Form.Label htmlFor="lName">Last Name</Form.Label>
           <Form.Control
-            type="lName"
+            type="text"
             placeholder="Your Last Name"
             name="lName"
             onChange={handleInputChange}
             value={userFormData.lName}
             required
           />
-
-          <Form.Control.Feedback type="invalid">
+          {/* <Form.Control.Feedback type="invalid">
             First Name is required!
-          </Form.Control.Feedback>
+          </Form.Control.Feedback> */}
         </Form.Group>
 
         <Form.Group>
@@ -121,6 +119,7 @@ const SignupForm = () => {
             Email is required!
           </Form.Control.Feedback>
         </Form.Group>
+        
         <Form.Group>
           <Form.Label htmlFor="username">Username</Form.Label>
           <Form.Control
@@ -162,31 +161,31 @@ const SignupForm = () => {
             required
           />
 
-          <Form.Control.Feedback type="invalid">
+          {/* <Form.Control.Feedback type="invalid">
             Address is required!
-          </Form.Control.Feedback>
+          </Form.Control.Feedback> */}
         </Form.Group>
 
         <Form.Group>
           <Form.Label htmlFor="city">City</Form.Label>
           <Form.Control
-            type="city"
+            type="text"
             placeholder="Your City"
             name="city"
             onChange={handleInputChange}
             value={userFormData.city}
             required
           />
-
+{/* 
           <Form.Control.Feedback type="invalid">
             City is required!
-          </Form.Control.Feedback>
+          </Form.Control.Feedback> */}
         </Form.Group>
 
         <Form.Group>
           <Form.Label htmlFor="state">State</Form.Label>
           <Form.Control
-            type="state"
+            type="text"
             placeholder="Your State"
             name="state"
             onChange={handleInputChange}
@@ -194,15 +193,15 @@ const SignupForm = () => {
             required
           />
 
-          <Form.Control.Feedback type="invalid">
+          {/* <Form.Control.Feedback type="invalid">
             State is required!
-          </Form.Control.Feedback>
+          </Form.Control.Feedback> */}
         </Form.Group>
 
         <Form.Group>
           <Form.Label htmlFor="zipCode">Postal Code</Form.Label>
           <Form.Control
-            type="zipCode"
+            type="text"
             placeholder="Your Postal Code"
             name="zipCode"
             onChange={handleInputChange}
@@ -210,23 +209,30 @@ const SignupForm = () => {
             required
           />
 
-          <Form.Control.Feedback type="invalid">
+          {/* <Form.Control.Feedback type="invalid">
             Postal Code is required!
-          </Form.Control.Feedback>
+          </Form.Control.Feedback> */}
         </Form.Group>
 
         <Button
           disabled={
             !(
-              userFormData.username &&
+              userFormData.fName &&
+              userFormData.lName &&
               userFormData.email &&
-              userFormData.password
+              userFormData.username &&
+              userFormData.password &&
+              userFormData.address &&
+              userFormData.city &&
+              userFormData.state &&
+              userFormData.zipCode
+              
             )
           }
           type="submit"
           variant="success"
         >
-          Submit
+          Signup
         </Button>
       </Form>
     </>

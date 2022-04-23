@@ -42,21 +42,35 @@ module.exports = {
     const token = signToken(user);
     res.json({ token, user });
   },
-  // save a action to a user's `savedActions` field by adding it to the set (to prevent duplicates)
+  // save a action to a user's `savedApiary` field by adding it to the set (to prevent duplicates)
   // user comes from `req.user` created in the auth middleware function
-  // async saveAction({ user, body }, res) {
-  //   console.log(user);
-  //   try {
-  //     const updatedUser = await User.findOneAndUpdate(
-  //       { _id: user._id },
-  //       { $addToSet: { savedActions: body } },
-  //       { new: true, runValidators: true }
-  //     );
-  //     return res.json(updatedUser);
-  //   } catch (err) {
-  //     console.log(err);
-  //     return res.status(400).json(err);
-  //   }
-  // },
+  async saveApiary({ user, body }, res) {
+    console.log(user);
+    try {
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: user._id },
+        { $addToSet: { saveApiary: body } },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedUser);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
 
+
+
+ // remove a apiary from `savedApiary`
+  async deleteApiary({ user, params }, res) {
+    const updatedUser = await User.findOneAndUpdate(
+      { _id: user._id },
+      { $pull: { savedApiary: { apiaryId: params.apiaryId } } },
+      { new: true }
+    );
+    if (!updatedUser) {
+      return res.status(404).json({ message: "Couldn't find user with this id!" });
+    }
+    return res.json(updatedUser);
+  },
 };

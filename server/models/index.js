@@ -1,6 +1,6 @@
 const User = require('./User');
 //changed
-const Actions=require('./Actions')
+const Apiary=require('./Apiary')
 //changed
-module.exports = { Actions };
+module.exports = { Apiary };
 module.exports = { User };

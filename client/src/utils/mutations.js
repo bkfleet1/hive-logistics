@@ -25,7 +25,7 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_APIARY = gql`
-  mutation addApiary($apiaryData: ApiaryInput!) {
+  mutation addApiary($apiaryData: ApiaryInput) {
     addApiary(apiaryData: $apiaryData) {
       _id
       username

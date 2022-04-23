@@ -10,11 +10,12 @@ const Apiary = () => {
     name: "",
   });
   // set state for form validation
-  const [validated] = useState(false);
+  const [validated, setValidated] = useState(false);
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
 
   const [addApiary, { error }] = useMutation(ADD_APIARY);
+  console.log(addApiary);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -31,18 +32,20 @@ const Apiary = () => {
       event.stopPropagation();
     }
 
+    setValidated(true);
+
     try {
+      console.log(apiaryFormData);
       const { data } = await addApiary({
         variables: { ...apiaryFormData },
       });
-      Auth.login(data.addApiary.token);
+      setApiaryFormData({
+        name: "",
+      });
+      //Auth.login(data.addApiary.token);
     } catch (e) {
       console.error(e);
     }
-
-    setApiaryFormData({
-      name: "",
-    });
   };
 
   return (

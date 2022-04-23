@@ -30,8 +30,8 @@ export const loginUser = (userData) => {
 
 // save apiary data for a logged in user
 export const addApiary = (apiaryData, token) => {
-  return fetch('/api/users', {
-    method: 'PUT',
+  return fetch('/api/users/apiary', {
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       authorization: `Bearer ${token}`,

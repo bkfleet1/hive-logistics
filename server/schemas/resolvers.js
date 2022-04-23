@@ -40,6 +40,7 @@ const resolvers = {
     },
 
     addApiary: async (_parent, { apiaryData }, context) => {
+      console.log(apiaryData);
       if (context.user) {
         const updatedUser = await User.findByIdAndUpdate(
           { _id: context.user._id },

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 function Manualmap() {
-  // const [text, setText] = useState('original text');
   const [lat, setLat] = useState("42.3024107");
   const [long, setLong] = useState("-89.0202339");
   const locationState = "Manual Entry";

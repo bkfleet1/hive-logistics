@@ -12,7 +12,8 @@ function Manualmap() {
         <span className="inputLabel">Latitude </span>
         <input
           type="text"
-          className="latitude  textField"
+          className="textField"
+          name="latitude"
           onChange={(e) => setLat(e.target.value)}
         ></input>
       </div>
@@ -20,7 +21,8 @@ function Manualmap() {
         <span className="inputLabel">Longitude </span>
         <input
           type="text"
-          className="longitude textField"
+          className="textField"
+          name="longitude"
           onChange={(f) => setLong(f.target.value)}
         ></input>
       </div>

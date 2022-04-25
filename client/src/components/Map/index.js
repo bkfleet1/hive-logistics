@@ -13,7 +13,7 @@ function Map() {
     <div className="geoItem">
       <div>
         <span className="inputLabel">Name: </span>
-        <input type="text" className="Name  textField"></input>
+        <input type="text" className="textField" name="name"></input>
       </div>
       <div>
         <span>Use device GPS service to acquire latitude & longitude? </span>

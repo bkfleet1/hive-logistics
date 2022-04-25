@@ -10,7 +10,8 @@ function Automap() {
   const [locationState, setLocationState] = useState([]);
 
   const KEY = process.env.REACT_APP_GMAP;
-
+  
+// permission check on access to user's geolocation service on device
   useEffect(() => {
     navigator.permissions
       .query({
@@ -30,8 +31,6 @@ function Automap() {
     error,
     { enableHighAccuracy: true, timeout: 5000, maximumAge: 5000 }
   );
-
-  // permission check on access to user's geolocation service on device
 
   return (
     <div className="coordinates">

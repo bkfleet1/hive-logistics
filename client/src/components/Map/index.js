@@ -1,7 +1,7 @@
 import "../../index.css";
 import { useState } from "react";
-import Automap from "../Pages/Automap";
-import Manualmap from "../Pages/Manualmap";
+import Automap from "../Automap";
+import Manualmap from "../Manualmap";
 
 function Map() {
   const [checked, setChecked] = useState(false);

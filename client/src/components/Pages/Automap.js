@@ -37,17 +37,11 @@ function Automap() {
     <div className="coordinates">
       <div>
         <span className="inputLabel">Latitude </span>
-        <input
-          className="latitude  textField"
-          value={lat}
-        ></input>
+        <input type="text" className="latitude  textField" value={lat}></input>
       </div>
       <div>
         <span className="inputLabel">Longitude </span>
-        <input
-          className="longitude textField"
-          value={long}
-        ></input>
+        <input type="text" className="longitude textField" value={long}></input>
       </div>
 
       <br />

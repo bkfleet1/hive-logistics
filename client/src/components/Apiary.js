@@ -14,12 +14,14 @@ const Apiary = () => {
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
 
-  const [addApiary, { error }] = useMutation(ADD_APIARY);
-  console.log(addApiary);
+  const [addApiary, { data, loading, error}] = useMutation(ADD_APIARY);
+  // console.log(addApiary);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+ 
     setApiaryFormData({ ...apiaryFormData, [name]: value });
+   
   };
 
   const handleFormSubmit = async (event) => {
@@ -36,11 +38,13 @@ const Apiary = () => {
 
     try {
       console.log(apiaryFormData);
-      const { data } = await addApiary({
-        variables: { ...apiaryFormData },
+      addApiary({
+        variables: {name:apiaryFormData }
+        
       });
       setApiaryFormData({
-        name: "",
+       apiaryFormData
+     
       });
       //Auth.login(data.addApiary.token);
     } catch (e) {

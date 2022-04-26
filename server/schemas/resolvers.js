@@ -39,18 +39,17 @@ const resolvers = {
       return { token, user };
     },
 
-    addApiary: async (_parent, { apiaryData }, context) => {
+    addApiary: async (_parent, apiaryData, context) => {
       console.log(apiaryData);
       if (context.user) {
         const updatedUser = await User.findByIdAndUpdate(
           { _id: context.user._id },
           { $push: { savedApiary: apiaryData } },
-          { new: true }
-        );
+          { new: true }        );
         return updatedUser;
       }
       throw new AuthenticationError("You need to be logged in!");
-    },
+    }, 
     removeApiary: async (_parent, { apiaryId }, context) => {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(

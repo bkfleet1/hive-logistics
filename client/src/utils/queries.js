@@ -7,7 +7,7 @@ export const GET_ME = gql`
       username
       email
       savedApiary {
-        apiaryId
+        _id
         name
       }
     }

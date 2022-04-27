@@ -1,26 +1,31 @@
 const { Schema } = require("mongoose");
 const shareFeederSchema = new Schema({ 
-  name: [
+  name: 
     {
       type: String,
       required: true,
-    }
-  ],
-  shareFeederId: {
+    },
+  // shareFeederId: {
+  //   type: String,
+  //   required: true
+  // },
+  latitude: {
     type: String,
-    required: true
+    required: true,
+    validate:{
+      len: [4]
+    },
   },
   longitude: {
     type: String,
     required: true,
+    validate:{
+      len: [4]
+    },
   },
-  longitude: {
-    type: String,
-    required: true,
-  },
-  status: {
-    type: String,
-  },
+  // status: {
+  //   type: String,
+  // },
 });
 
 module.exports = shareFeederSchema;

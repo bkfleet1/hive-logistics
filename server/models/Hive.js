@@ -9,6 +9,7 @@ const Schema = hiveSchema({
   latitude: 
     {
       type: String,
+      required: true
     },
   
   longitude: {
@@ -22,6 +23,7 @@ const Schema = hiveSchema({
   },
   beeBreed: {
     type: String,
+    required: true
   },
   applicationSource: {
     type: String,

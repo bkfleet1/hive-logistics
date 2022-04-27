@@ -1,3 +1,5 @@
+const {}
+
 const hiveData = [
     {
         name: "hive",

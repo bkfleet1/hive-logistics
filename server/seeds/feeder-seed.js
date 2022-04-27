@@ -1,3 +1,5 @@
+const {shareFeeder} = require('../models');
+
 const feederData = [
     {
         name: "feeder",
@@ -21,4 +23,4 @@ const feederData = [
     }
 ];
 
-module.exports =
+module.exports = shareFeeder;

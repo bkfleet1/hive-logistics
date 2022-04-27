@@ -76,35 +76,6 @@ const BeeFeeder = () => {
             Name is required!
           </Form.Control.Feedback>
         </Form.Group>
-
-        <Form.Group>
-          <div class="form-group">
-            <label class="control-label" for="BeeBreed">
-              beeBreed
-            </label>
-            <select id="BeeBreed" class="form-control" name="BeeBreed">
-              <option value="a">a</option>
-              <option value="b">b</option>
-              <option value="c">c</option>
-            </select>
-          </div>
-        </Form.Group>
-
-        <Form.Group>
-          <Form.Label htmlFor="name">AcquisitionSource</Form.Label>
-          type="text" placeholder="AcquisitionSource:" name="acquisitionSource"
-          onChange={handleInputChange}
-          value={beeFeederFormData.acquisitionSource}
-          required
-        </Form.Group>
-
-        <Form.Group>
-          <Form.Label htmlFor="name">AcquisitionDate</Form.Label>
-          type="date" placeholder="AcquisitionDate:" name="acquisitionDate"
-          onChange={handleInputChange}
-          value={beeFeederFormData.acquisitionDate}
-          required
-        </Form.Group>
       </Form>
     </>
   );

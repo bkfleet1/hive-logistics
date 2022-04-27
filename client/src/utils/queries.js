@@ -10,6 +10,17 @@ export const GET_ME = gql`
         _id
         name
       }
+      savedHive {
+        _id
+        name
+        beeBreed
+        AcquisitionSource
+        acquisitionDate
+      }
+      savedBeeFeeder {
+        _id
+        name
+      }
     }
   }
 `;

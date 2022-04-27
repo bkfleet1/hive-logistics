@@ -45,11 +45,38 @@ const resolvers = {
         const updatedUser = await User.findByIdAndUpdate(
           { _id: context.user._id },
           { $push: { savedApiary: apiaryData } },
-          { new: true }        );
+          { new: true }
+        );
         return updatedUser;
       }
       throw new AuthenticationError("You need to be logged in!");
-    }, 
+    },
+
+    addHive: async (_parent, hiveData, context) => {
+      console.log(hiveData);
+      if (context.user) {
+        const updatedApiary = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { savedHive: hiveData } },
+          { new: true }
+        );
+        return updatedApiary;
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+
+    addBeeFeeder: async (_parent, beeFeederData, context) => {
+      console.log(beeFeederData);
+      if (context.user) {
+        const updatedApiary = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { savedBeefeeder: beeFeederData } },
+          { new: true }
+        );
+        return updatedApiary;
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
     removeApiary: async (_parent, { apiaryId }, context) => {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(

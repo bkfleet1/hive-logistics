@@ -28,33 +28,33 @@ const typeDefs = gql`
   type Apiary {
     name: String
 
-    # savedHive: [Hive]
-    #savedHive: [ShareFeeder]
+     savedHive: [Hive]
+     savedBeeFeeder: [BeeFeeder]
   }
 
   input ApiaryInput {
     name: String
-    # apiaryId: String
+
   }
 
-  # type Hive {
-  #   name: String
-  #   latitude: String
-  #   longitude: String
-  #   status: String
-  #   beeBreed: String
-  #   ApplicationSource: String
-  #   AcquisitionDate: date
-  #   boxType: String
-  #   frameCount: Int
-  #   DeploymentDate: date
-  # }
-  # type ShareFeeder {
-  #   name: String
-  #   latitude: String
-  #   longitude: String
-  #   status: String
-  # }
+  type Hive {
+    name: String
+    latitude: String
+    longitude: String
+    status: String
+    beeBreed: String
+    ApplicationSource: String
+    AcquisitionDate: date
+    boxType: String
+    frameCount: Int
+    DeploymentDate: date
+  }
+  type BeeFeeder {
+    name: String
+    latitude: String
+    longitude: String
+    status: String
+  }
 
   type Auth {
     token: ID!
@@ -69,6 +69,8 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     addApiary(apiaryData: ApiaryInput): User
+    addApiary(hiveData: hiveInput): Apiary
+    addBeeFeeder(beeFeederData: BeeFeederInput): Apiary
     removeApiary(apiaryId: ID!): User
   }
 `;

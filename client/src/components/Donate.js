@@ -1,27 +1,24 @@
 import React, { useState } from "react";
-import '../App.css';
+import "../App.css";
 import StripeCheckout from "react-stripe-checkout";
 
 
 function Donate() {
   var [amount, setAmount] = useState("");
 
-      const pay = {
-        
-        border: "4px solid Blue",
-        borderRadius: "5px",
-        textAlign:"center",
-        height:"45px",
-        marginLeft: "0px",
-        marginTop:"15px",
-        display: "block",
-        padding: "15px" ,
-        fontFamily: "Times New Roman",
-        fontSize: "14px",
-        width: "100%",
-        
-         
-      }
+  const pay = {
+    border: "4px solid green",
+    borderRadius: "5px",
+    textAlign: "center",
+    height: "45px",
+    marginLeft: "0px",
+    marginTop: "15px",
+    display: "block",
+    padding: "15px",
+    fontFamily: "Times New Roman",
+    fontSize: "14px",
+    width: "100%",
+  };
 
   const numberHandle = (event) => {
     setAmount(event.target.value);
@@ -35,7 +32,7 @@ function Donate() {
       "Content-Type": "application/json",
     };
 
-    return fetch(`http://localhost:8080/checkout`, {
+    return fetch(`http://localhost:8282/checkout`, {
       method: "POST",
       headers,
       body: JSON.stringify(body),
@@ -49,26 +46,39 @@ function Donate() {
   };
   return (
     <>
-      <div>
-        <label>Donation:</label>
-        <input
-          onChange={numberHandle}
-          style={pay}
-          type="number"
-          placeholder="Amount:$"
-          value={amount}
-        />
-        <StripeCheckout
-          stripeKey={process.env.REACT_APP_KEY}
-          token={payment}
-          name="Donate"
-          amount={amount * 100}
+    <div>
+      <h1>Please Donate!</h1>
+      <input
+        onChange={numberHandle}
+        style={pay}
+        type="number"
+        placeholder=" Enter the amount you wish to donate in $"
+        value={amount}
+      />
+      <StripeCheckout
+        stripeKey="pk_test_51KpWTiJ3LESCIMvinKVl2WL7VgEPOTAFndsTIs1hu3qLwD6J26kEuwAuO6ZZynOHUSdiAgt62MaXK6S9SbwPMHtx00WaibEBJL"
+        //{process.env.REACT_APP_KEY}
+        token={payment}
+        name="Donate"
+        amount={amount * 100}>
+        <button
+          style={{
+            padding: "15px",
+            backgroundColor: "green",
+            color: "white",
+            fontWeight: "500",
+            cursor: "pointer",
+            width: "500",
+            border: "5px solid green",
+            display: "flex",
+            width: "100%",
+          }}
         >
-          <button className="btn-large ">Donate {amount}</button>
-        </StripeCheckout>
-      </div>
-    </>
+          DONATE
+        </button>
+      </StripeCheckout>
+  </div>
+  </>
   );
-}
-
+  };
 export default Donate;

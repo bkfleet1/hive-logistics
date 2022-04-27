@@ -2,8 +2,9 @@ const cors = require("cors");
 const express = require("express");
 
 const stripe = require("stripe")(
-  "pk_test_51KpWTiJ3LESCIMvinKVl2WL7VgEPOTAFndsTIs1hu3qLwD6J26kEuwAuO6ZZynOHUSdiAgt62MaXK6S9SbwPMHtx00WaibEBJL"
+  "sk_test_51KpWTiJ3LESCIMvijwcmysYeM7yqLVckITjtx1bZAXYQ2Mwi0bXWwhES2L4eZWgOtk7cschJzuxK0CCiHPnTrCbZ00yy160RUa"
 );
+
 const { v4: uuidv4 } = require("uuid");
 
 const app = express();
@@ -14,19 +15,19 @@ app.use(cors());
 
 //routes
 app.get("/", (req, res) => {
-  res.send("IT WORKS ");
+  res.send("ITS WORKS ");
 });
 
 app.post("/checkout", (req, res) => {
-  const { number, token } = req.body;
-  console.log("AMOUNT ", number);
+  const { amount, token } = req.body;
+  console.log("AMOUNT ", amount);
 
-  const idempontencyKey = uuidv4();
+  const idKey = uuidv4();
 
   stripe.checkout.sessions.create({
-    success_url: "http://localhost:3000/success",
-    cancel_url: "https://localhost:3000/cancel",
-    payment_method_types: ["card"],
+    success: "http://localhost:3000/success",
+    cancel: "https://localhost:3000/cancel",
+    paymentType: ["card"],
     mode: "payment",
   });
 
@@ -38,13 +39,16 @@ app.post("/checkout", (req, res) => {
     .then((customer) => {
       stripe.charges.create(
         {
-          amount: number * 100,
-          currency: "inr",
+           email: 'mssjhu9@gmail.com',
+          amount: amount * 100,
+          currency: "usd",
           customer: customer.id,
           receipt_email: token.email,
         },
-        { idempontencyKey }
+        { idKey }
       );
+       console.log(customer);
+        console.log(email);
     })
     .then((result) => res.status(200).json(result))
     .catch((err) => console.log(err));

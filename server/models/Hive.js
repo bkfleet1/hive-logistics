@@ -26,19 +26,19 @@ const Schema = hiveSchema({
   applicationSource: {
     type: String,
   },
-  // acquisitionDate: {
-  //   type: Date,
-  //   required: true,
-  // },
+   acquisitionDate: {
+     type: Date,
+     required: true,
+  },
   boxType: {
     type: String,
   },
   frameCount: {
     type: String,
   },
-  // deploymentDate: {
-  //   type: date,
-  // },
+  deploymentDate: {
+     type: Date,
+   },
 });
 
 module.exports = hiveSchema;

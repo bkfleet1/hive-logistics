@@ -14,10 +14,12 @@
   "dependencies": {
     "apollo-server-express": "*",
     "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "graphql": "^15.5.0",
     "jsonwebtoken": "*",
     "mongoose": "^5.9.10",
+    "react-router-dom": "^6.3.0",
     "stripe": "^8.217.0"
   },
   "devDependencies": {

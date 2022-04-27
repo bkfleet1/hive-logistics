@@ -14,7 +14,10 @@ import SavedApiary from './components/SavedApiary';
 import Navbar from "./components/Navbar";
 import Donate from "./components/Donate";
 import Success from "./components/Success";
-// import Button from "./component/Button";
+import Cancel from "./components/Cancel";
+import Hive from "./components/Hive";
+import BeeFeeder from "./components/BeeFeeder";
+
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem("id_token");
@@ -46,9 +49,11 @@ function App() {
             <Route exact path="/" component={LoginForm} />
             <Route exact path="/saved" component={Apiary} />
             <Route exact path="/saved" component={SavedApiary} />
+            <Route exact path="/saved" component={Hive} />
+            <Route exact path="/saved" component={BeeFeeder} />
             <Route path="/" component={Donate} />
             <Route path="/" component={Success} />
-            {/* <Route path="/saved" component={Button} /> */}
+            <Route path="/" component={Cancel}/>
 
             <Route render={() => <h1 className="display-2">Wrong page!</h1>} />
           </Switch>

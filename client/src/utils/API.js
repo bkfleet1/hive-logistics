@@ -40,6 +40,30 @@ export const addApiary = (apiaryData, token) => {
   });
 };
 
+// save hive data for a logged in user and apiary
+export const addHive = (hiveData, token) => {
+  return fetch('/api/users/apiary/hive', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(hiveData),
+  });
+};
+
+// save apiary data for a logged in user
+export const addBeeFeeder = (beeFeederData, token) => {
+  return fetch('/api/users/apiary/beeFeeder', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(beeFeederData),
+  });
+};
+
 
 // remove saved apiary data for a logged in user
 export const deleteApiary = (apiaryId, token) => {

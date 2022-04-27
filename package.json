@@ -17,15 +17,18 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^5.3.0"
+    "concurrently": "^5.3.0",
+    "gh-pages": "^3.2.3"
   },
   "dependencies": {
     "apollo-server-express": "*",
     "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
     "create-react-app": "^5.0.1",
     "jsonwebtoken": "*",
     "jwt-decode": "^3.1.2",
-     "react-stripe-checkout": "^2.6.3",
+    "react-router-dom": "^6.3.0",
+    "react-stripe-checkout": "^2.6.3",
     "stripe": "^8.217.0",
     "yarn.lock": "^0.0.1-security"
   }

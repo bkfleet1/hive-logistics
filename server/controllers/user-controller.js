@@ -59,7 +59,35 @@ module.exports = {
     }
   },
 
+async addHive({ user, body }, res) {
+    console.log(user);
+    try {
+      const updatedApiary = await User.findOneAndUpdate(
+        { _id: user._id },
+        { $addToSet: { addBeeFeeder: body } },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedApiary);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
 
+  async addBeeFeeder({ user, body }, res) {
+    console.log(user);
+    try {
+      const updatedApiary = await User.findOneAndUpdate(
+        { _id: user._id },
+        { $addToSet: { addBeeFeeder: body } },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedApiary);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
 
  // remove a apiary from `savedApiary`
   async deleteApiary({ user, params }, res) {

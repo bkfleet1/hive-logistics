@@ -7,7 +7,7 @@ module.exports = { User };
 
 const Hive = require('./Hive');
 //changed
-const BeeFeeder=require('./BeeFeeder')
+const ShareFeeder = require('./ShareFeeder')
 //changed
 module.exports = { Hive };
-module.exports = { BeeFeeder };
+module.exports = { ShareFeeder };

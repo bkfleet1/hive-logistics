@@ -27,12 +27,19 @@ const typeDefs = gql`
   # }
   type Apiary {
     name: String
-
+  
     Hive: [Hive]
-    BeeFeeder: [BeeFeeder]
+    ShareFeeder: [ShareFeeder]
   }
 
   input ApiaryInput {
+    name: String
+  }
+   input HiveInput {
+    name: String
+  }
+
+   input BeeFeederInput {
     name: String
   }
 
@@ -43,12 +50,12 @@ const typeDefs = gql`
     status: String
     beeBreed: String
     ApplicationSource: String
-    AcquisitionDate: date
+    AcquisitionDate: String
     boxType: String
     frameCount: Int
-    DeploymentDate: date
+    DeploymentDate: String
   }
-  type BeeFeeder {
+  type ShareFeeder {
     name: String
     latitude: String
     longitude: String
@@ -68,9 +75,9 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     addApiary(apiaryData: ApiaryInput): User
-    addApiary(hiveData: hiveInput): Apiary
+    addHive(hiveData: HiveInput): Apiary
     addBeeFeeder(beeFeederData: BeeFeederInput): Apiary
-    removeApiary(apiaryId: ID!): User
+    removeApiary(_Id: ID!): User
   }
 `;
 

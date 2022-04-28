@@ -16,7 +16,7 @@ import Donate from "./components/Donate";
 import Success from "./components/Success";
 import Cancel from "./components/Cancel";
 import Hive from "./components/Hive";
-import BeeFeeder from "./components/BeeFeeder";
+import ShareFeeder from "./components/ShareFeeder";
 
 
 const authLink = setContext((_, { headers }) => {
@@ -50,7 +50,7 @@ function App() {
             <Route exact path="/saved" component={Apiary} />
             <Route exact path="/saved" component={SavedApiary} />
             <Route exact path="/saved" component={Hive} />
-            <Route exact path="/saved" component={BeeFeeder} />
+            <Route exact path="/saved" component={ShareFeeder} />
             <Route path="/" component={Donate} />
             <Route path="/" component={Success} />
             <Route path="/" component={Cancel}/>

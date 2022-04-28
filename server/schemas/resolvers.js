@@ -1,4 +1,4 @@
-const { User } = require("../models");
+const { User, Apiary, Hive, ShareFeeder } = require("../models");
 const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
 
@@ -26,7 +26,7 @@ const resolvers = {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError("User not Found!");
+        throw new AuthenticationError("Incorrect credentials!");
       }
 
       const correctPw = await user.isCorrectPassword(password);
@@ -39,44 +39,46 @@ const resolvers = {
       return { token, user };
     },
 
-    addApiary: async (_parent, apiaryData, context) => {
-      console.log(apiaryData);
+       addApiary: async (_parent, apiaryData, context) => {
+      console.log(context);
       if (context.user) {
-        const updatedUser = await User.findByIdAndUpdate(
+        const apiary = new Apiary({ apiaryData });
+        await User.findByIdAndUpdate(
           { _id: context.user._id },
           { $push: { savedApiary: apiaryData } },
           { new: true }
         );
-        return updatedUser;
+        return apiary;
       }
       throw new AuthenticationError("You need to be logged in!");
     },
 
     addHive: async (_parent, hiveData, context) => {
-      console.log(hiveData);
+      console.log(context);
       if (context.user) {
-        const updatedApiary = await User.findByIdAndUpdate(
+        const hive = new Hive({ hiveData });
+        await User.findByIdAndUpdate(
           { _id: context.user._id },
           { $push: { Hive: hiveData } },
           { new: true }
         );
-        return updatedApiary;
+        return addHive;
       }
-      throw new AuthenticationError("You need to be logged in!");
     },
 
     addBeeFeeder: async (_parent, beeFeederData, context) => {
       console.log(beeFeederData);
       if (context.user) {
-        const updatedApiary = await User.findByIdAndUpdate(
+        const feeder = new ShareFeeder({ beeFeederData });
+        await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $push: { Beefeeder: beeFeederData } },
+          { $push: { ShareFeeder: beeFeederData } },
           { new: true }
         );
-        return updatedApiary;
+        return feeder;
       }
-      throw new AuthenticationError("You need to be logged in!");
     },
+
     removeApiary: async (_parent, { _id }, context) => {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
@@ -86,7 +88,7 @@ const resolvers = {
         );
         return updatedUser;
       }
-      throw new AuthenticationError("You need to be logged in!");
+      throw new AuthenticationError("Not logged in");
     },
   },
 };

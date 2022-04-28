@@ -4,7 +4,7 @@ import { useMutation } from "@apollo/client";
 import { ADD_BEEFEEDER } from "../utils/mutations";
 import Auth from "../utils/auth";
 
-const BeeFeeder = () => {
+const ShareFeeder = () => {
   // set initial form state
   const [beeFeederFormData, setBeeFeederFormData] = useState({
     name: "",
@@ -81,4 +81,4 @@ const BeeFeeder = () => {
   );
 };
 
-export default BeeFeeder;
+export default ShareFeeder;

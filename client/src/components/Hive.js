@@ -109,7 +109,7 @@ const Hive = () => {
 
         <Form.Group>
           <Form.Label htmlFor="name">AcquisitionDate</Form.Label>
-          type="date" placeholder="AcquisitionDate:" name="acquisitionDate"
+          type="text" placeholder="AcquisitionDate:" name="acquisitionDate"
           onChange={handleInputChange}
           value={hiveFormData.acquisitionDate}
           required

@@ -50,7 +50,7 @@ export const ADD_HIVE = gql`
 export const ADD_BEEFEEDER = gql`
   mutation addBeeFeeder($beeFeederData: BeeFeederInput) {
     addBeeFeeder(beeFeederData: $beeFeederData) {
-      BeeFeeder {
+      ShareFeeder {
         name
       }
     }
@@ -58,7 +58,7 @@ export const ADD_BEEFEEDER = gql`
 `;
 
 export const REMOVE_APIARY = gql`
-  mutation removeApiary($apiary: NAME!) {
+  mutation removeApiary($apiary: name: $name) {
     removeApiary(_id: $_id) {
       _id
       username

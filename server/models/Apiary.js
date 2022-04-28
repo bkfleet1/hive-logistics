@@ -1,9 +1,10 @@
-const { Schema } = require("mongoose");
+const mongoose = require("mongoose");
+
+const { Schema } = mongoose;
 // import schema Hive
 const hiveSchema = require("./Hive");
 // import schema from BeeFeeder
-const shareFeederSchema = require("./BeeFeeder");
-
+const shareFeeSchema = require("./ShareFeeder");
 
 const apiarySchema = new Schema(
   {
@@ -12,9 +13,9 @@ const apiarySchema = new Schema(
       required: true,
     },
 
-    // set savedShareFeeder to be an array of data that adheres to the shareFeederSchema
-     ShareFeeder: [shareFeederSchema],
-     Hive: [hiveSchema],
+    // set savedShareFeeder to be an array of data that adheres to the shareFeeSchema
+    ShareFeeder: [shareFeeSchema.schema],
+    Hive: [hiveSchema.schema],
   },
   // set this to use virtual below
   {
@@ -23,4 +24,5 @@ const apiarySchema = new Schema(
     },
   }
 );
-module.exports = apiarySchema;
+const Apiary = mongoose.model("Apiary", apiarySchema);
+module.exports = Apiary;

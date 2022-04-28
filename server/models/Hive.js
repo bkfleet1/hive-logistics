@@ -1,17 +1,15 @@
-const { Schema } = require("mongoose");
-const Schema = hiveSchema(
-  {
+const { Schema, model } = require("mongoose");
 
+const hiveSchema = new Schema({
   name: {
     type: String,
     required: true,
   },
-  
-  latitude: 
-    {
-      type: String,
-    },
-  
+
+  latitude: {
+    type: String,
+  },
+
   longitude: {
     type: String,
     required: true,
@@ -27,9 +25,10 @@ const Schema = hiveSchema(
   applicationSource: {
     type: String,
   },
-   acquisitionDate: {
-     type: Date,
-     required: true,
+  acquisitionDate: {
+    type: Date,
+    default: Date.now
+   
   },
   boxType: {
     type: String,
@@ -38,8 +37,10 @@ const Schema = hiveSchema(
     type: String,
   },
   deploymentDate: {
-     type: Date,
-   },
+   type: Date,
+  default: Date.now 
+  }
 });
 
-module.exports = hiveSchema;
+const Hive = model("Hive", hiveSchema);
+module.exports = Hive;

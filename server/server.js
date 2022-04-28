@@ -1,14 +1,13 @@
 const express = require("express");
 const { ApolloServer } = require("apollo-server-express");
-const { typeDefs, resolvers } = require("./schemas");
 const path = require("path");
-const db = require("./config/connection");
+
+const { typeDefs, resolvers } = require("./schemas");
 const { authMiddleware } = require("./utils/auth");
-const routes = require("./routes");
+const db = require("./config/connection");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -17,9 +16,12 @@ const server = new ApolloServer({
 
 server.applyMiddleware({ app });
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use("/", routes);
+
+// Serve up static assets
+app.use("/images", express.static(path.join(__dirname, "../client/images")));
+
 // if we're in production, serve client/build as static assets
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));

@@ -1,7 +1,8 @@
-const { Schema } = require("mongoose");
+const mongoose = require('mongoose');
 
-const shareFeederSchema = new Schema({
-  
+const { Schema } = mongoose;
+
+const shareFeeSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -17,7 +18,8 @@ const shareFeederSchema = new Schema({
   },
   status: {
     type: String,
-  },
+  }
 });
 
-module.exports = shareFeederSchema;
+const ShareFeeder = mongoose.model("ShareFeeder", shareFeeSchema);
+module.exports = ShareFeeder;

@@ -1,8 +1,10 @@
-const { Schema, model } = require("mongoose");
-const bcrypt = require("bcrypt");
+const mongoose = require('mongoose');
+
+const { Schema } = mongoose;
+const bcrypt = require('bcrypt');
 
 // import schema from Apiary
-const apiarySchema = require("./Apiary");
+const Apiary = require("./Apiary");
 
 const userSchema = new Schema(
   {
@@ -20,7 +22,7 @@ const userSchema = new Schema(
     },
     city: {
       type: String,
-     // required: true,
+      // required: true,
     },
     zipCode: {
       type: String,
@@ -41,8 +43,8 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    // set savedApiary to be an array of data that adheres to the actionsSchema
-     savedApiary: [apiarySchema],
+    // set savedApiary to be an array of data that adheres to the apiarySchema
+    savedApiary: [Apiary.schema]
   },
   // set this to use virtual below
   {
@@ -68,9 +70,9 @@ userSchema.methods.isCorrectPassword = async function (password) {
 };
 
 // when we query a user, we'll also get another field called `apiaryCount` with the number of saved apiary we have
-userSchema.virtual('apiaryCount').get(function () {
+userSchema.virtual("apiaryCount").get(function () {
   return this.savedApiary.length;
 });
 
-const User = model("User", userSchema);
+const User = mongoose.model('User', userSchema);
 module.exports = User;

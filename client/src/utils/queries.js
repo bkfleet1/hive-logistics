@@ -18,7 +18,7 @@ export const GET_ME = gql`
         AcquisitionSource
         acquisitionDate
       }
-      BeeFeeder {
+      ShareFeeder {
         _id
         name
       }
@@ -49,7 +49,7 @@ export const QUERY_USER = gql`
         acquisitionDate
           
         }
-        BeeFeeder {
+        ShareFeeder {
           _id
           name
         
@@ -82,7 +82,7 @@ export const QUERY_HIVE = gql`
 `;
 export const QUERY_FEEDER = gql`
   {
-    beeFeeder {
+    ShareFeeder {
       _id
       name
     }
@@ -104,7 +104,7 @@ export const QUERY_APIARY_ALL = gql`
         acquisitionDate
           
         }
-        BeeFeeder {
+        ShareFeeder {
           _id
           name
         

@@ -1,11 +1,12 @@
 import "./index.css";
-import Map from "./components/Map";
+
+import Googlemap from "./components/Googlemap";
 
 
 function App() {
 
     const renderPage = () => {
-          return <Map />;
+          return <Googlemap />;
       }
  
     return (

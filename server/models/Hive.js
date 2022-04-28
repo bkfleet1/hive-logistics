@@ -1,5 +1,6 @@
-const { Schema } = require("mongoose");
-const Schema = hiveSchema({
+const { Schema, model } = require("mongoose");
+
+const hiveSchema = new Schema({
 
   shareFeederId: {
     type: String,
@@ -43,4 +44,5 @@ const Schema = hiveSchema({
   // },
 });
 
+const hive = model("Hive", hiveSchema);
 module.exports = hiveSchema;

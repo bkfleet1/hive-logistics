@@ -1,4 +1,4 @@
-const { Schema } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const apiarySchema = new Schema({
   name: 
@@ -15,7 +15,7 @@ const apiarySchema = new Schema({
   // set savedShareFeeder to be an array of data that adheres to the shareFeederSchema
    //  savedAShareFeeder: [shareFeederSchema],
     // savedHive: [HiveSchema],
- },
+},
   // set this to use virtual below
   {
     toJSON: {
@@ -23,4 +23,5 @@ const apiarySchema = new Schema({
     },
   }
 );
+const apiary = model("Apiary", apiarySchema);
 module.exports = apiarySchema;

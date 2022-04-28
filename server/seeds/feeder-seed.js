@@ -1,4 +1,4 @@
-const {shareFeeder} = require('../models');
+const {ShareFeeder} = require('../models');
 
 const feederData = [
     {
@@ -23,4 +23,4 @@ const feederData = [
     }
 ];
 
-module.exports = shareFeeder;
+module.exports = feederData;

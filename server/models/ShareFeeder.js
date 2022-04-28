@@ -1,4 +1,5 @@
-const { Schema } = require("mongoose");
+const { Schema, model } = require("mongoose");
+
 const shareFeederSchema = new Schema({ 
   name: 
     {
@@ -11,21 +12,16 @@ const shareFeederSchema = new Schema({
   // },
   latitude: {
     type: String,
-    required: true,
-    validate:{
-      len: [4]
-    },
+    required: true
   },
   longitude: {
     type: String,
-    required: true,
-    validate:{
-      len: [4]
-    },
+    required: true
   },
   // status: {
   //   type: String,
   // },
 });
 
-module.exports = shareFeederSchema;
+const shareFeeder = model("ShareFeeder", shareFeederSchema);
+module.exports = shareFeeder;

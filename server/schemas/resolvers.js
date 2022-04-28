@@ -16,18 +16,13 @@ const resolvers = {
     },
   },
   Mutation: {
-    // addUser: async (_parent, args) => {
-    //   const user = await User.create(args);
-    //   const token = signToken(user);
-
-    //   return { token, user };
-    // },
-    addUser:  (_parent, args) => {
-      const user = User.create(args);
+    addUser: async (_parent, args) => {
+      const user = await User.create({ ...args })
       const token = signToken(user);
 
       return { token, user };
     },
+   
     login: async (_parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -85,17 +80,17 @@ const resolvers = {
       }
     },
 
-    removeApiary: async (_parent, { _id }, context) => {
-      if (context.user) {
-        const updatedUser = await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { savedApiary: { _id } } },
-          { new: true }
-        );
-        return updatedUser;
-      }
-      throw new AuthenticationError("Not logged in");
-    },
+    // removeApiary: async (_parent, { _id }, context) => {
+    //   if (context.user) {
+    //     const updatedUser = await User.findOneAndUpdate(
+    //       { _id: context.user._id },
+    //       { $pull: { savedApiary: { _id } } },
+    //       { new: true }
+    //     );
+    //     return updatedUser;
+    //   }
+    //   throw new AuthenticationError("Not logged in");
+    // },
   },
 };
 

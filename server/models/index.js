@@ -1,13 +1,6 @@
-const User = require('./User');
-//changed
-const Apiary=require('./Apiary')
-//changed
-module.exports = { Apiary };
-module.exports = { User };
+const User = require("./User");
+const Hive = require("./Hive");
+const Apiary = require("./Apiary");
+const ShareFeeder = require("./ShareFeeder");
 
-const Hive = require('./Hive');
-//changed
-const ShareFeeder = require('./ShareFeeder')
-//changed
-module.exports = { Hive };
-module.exports = { ShareFeeder };
+module.exports = { User, Apiary, Hive, ShareFeeder };

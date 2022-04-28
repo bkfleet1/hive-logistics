@@ -17,12 +17,12 @@ const resolvers = {
   },
   Mutation: {
     addUser: async (_parent, args) => {
-      const user = await User.create({ ...args })
+      const user = await User.create({ ...args });
       const token = signToken(user);
 
       return { token, user };
     },
-   
+
     login: async (_parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -40,7 +40,7 @@ const resolvers = {
       return { token, user };
     },
 
-       addApiary: async (_parent, apiaryData, context) => {
+    addApiary: async (_parent, apiaryData, context) => {
       console.log(context);
       if (context.user) {
         const apiary = new Apiary({ apiaryData });

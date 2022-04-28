@@ -14,7 +14,7 @@ export const saveApiaryIds = (apiaryIdArr) => {
   }
 };
 
-export const removeApiaryId = (apiaryId) => {
+export const removeApiaryId = (_id) => {
   const savedApiaryIds = localStorage.getItem("saved_apiary")
     ? JSON.parse(localStorage.getItem("saved_apiary"))
     : null;
@@ -24,7 +24,7 @@ export const removeApiaryId = (apiaryId) => {
   }
 
   const updatedSavedApiaryIds = savedApiaryIds?.filter(
-    (savedApiaryId) => savedApiaryId !== apiaryId
+    (savedApiaryId) => savedApiaryId !== _id
   );
   localStorage.setItem("saved_apiary", JSON.stringify(updatedSavedApiaryIds));
 

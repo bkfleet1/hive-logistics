@@ -1,15 +1,12 @@
 const { Schema } = require("mongoose");
-const shareFeederSchema = new Schema({ 
-  name: [
-    {
-      type: String,
-      required: true,
-    }
-  ],
-  shareFeederId: {
+
+const shareFeederSchema = new Schema({
+  
+  name: {
     type: String,
-    required: true
+    required: true,
   },
+
   longitude: {
     type: String,
     required: true,

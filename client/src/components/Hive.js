@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+//import { Dropdown, Option } from "./Dropdown";
 import { Form, Button, Alert } from "react-bootstrap";
 import { useMutation } from "@apollo/client";
 import { ADD_HIVE } from "../utils/mutations";
@@ -78,7 +79,7 @@ const Hive = () => {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group>
+        {/* <Form.Group>
           <div class="form-group">
             <label class="control-label" for="BeeBreed">
               beeBreed
@@ -89,7 +90,14 @@ const Hive = () => {
               <option value="c">c</option>
             </select>
           </div>
-        </Form.Group>
+        </Form.Group> */}
+
+        {/* <Dropdown action="/">
+          <Option selected value="BeeBreed" />
+          <Option value="Option 1" />
+          <Option value="Option 2" />
+          <Option value="Option 3" />
+        </Dropdown> */}
 
         <Form.Group>
           <Form.Label htmlFor="name">AcquisitionSource</Form.Label>

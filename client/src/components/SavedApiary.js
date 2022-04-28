@@ -7,19 +7,21 @@ import {
   Button,
 } from "react-bootstrap";
 import { useQuery, useMutation } from "@apollo/client";
-import { GET_ME } from "../utils/queries";
+import { GET_ME, QUERY_USER } from "../utils/queries";
 import { REMOVE_APIARY } from "../utils/mutations";
 import { removeApiaryId } from "../utils/localStorage";
 import Auth from "../utils/auth";
 
 const SavedApiary = () => {
   const { loading, data } = useQuery(GET_ME);
+  // const { data } = useQuery(QUERY_USER);
+  //const { loading, data } = useQuery(QUERY_USER);
   const [removeApiary, { error }] = useMutation(REMOVE_APIARY);
 
   const userData = data?.me || {};
 
   // create function that accepts the apiary's _id value as param and deletes the book from the database
-  const handleDeleteApiary = async (apiaryId) => {
+  const handleDeleteApiary = async (_id) => {
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -29,11 +31,11 @@ const SavedApiary = () => {
 
     try {
       await removeApiary({
-        variables: { apiaryId },
+        variables: { _id },
       });
 
       // upon success, remove apiary's id from localStorage
-      removeApiaryId(apiaryId);
+      removeApiaryId(_id);
     } catch (err) {
       console.error(err);
     }
@@ -62,13 +64,13 @@ const SavedApiary = () => {
         <CardColumns>
           {userData.savedApiary?.map((apiary) => {
             return (
-              <Card key={apiary.apiaryId} border="dark">
+              <Card key={apiary._id} border="dark">
                 <Card.Body>
                   <Card.Title>{apiary.name}</Card.Title>
                   <p className="small">Name: {apiary.name}</p>
                   <Button
                     className="btn-block btn-danger"
-                    onClick={() => handleDeleteApiary(apiary.apiaryId)}
+                    onClick={() => handleDeleteApiary(apiary._id)}
                   >
                     Delete this Apiary!
                   </Button>

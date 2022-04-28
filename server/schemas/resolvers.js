@@ -57,7 +57,7 @@ const resolvers = {
       if (context.user) {
         const updatedApiary = await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $push: { savedHive: hiveData } },
+          { $push: { Hive: hiveData } },
           { new: true }
         );
         return updatedApiary;
@@ -70,18 +70,18 @@ const resolvers = {
       if (context.user) {
         const updatedApiary = await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $push: { savedBeefeeder: beeFeederData } },
+          { $push: { Beefeeder: beeFeederData } },
           { new: true }
         );
         return updatedApiary;
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-    removeApiary: async (_parent, { apiaryId }, context) => {
+    removeApiary: async (_parent, { _id }, context) => {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { savedApiary: { apiaryId } } },
+          { $pull: { savedApiary: { _id } } },
           { new: true }
         );
         return updatedUser;

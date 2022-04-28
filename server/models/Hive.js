@@ -1,9 +1,10 @@
 const { Schema } = require("mongoose");
-const Schema = hiveSchema({
+const Schema = hiveSchema(
+  {
 
-  shareFeederId: {
+  name: {
     type: String,
-    required: true
+    required: true,
   },
   
   latitude: 

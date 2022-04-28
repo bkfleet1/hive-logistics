@@ -28,13 +28,12 @@ const typeDefs = gql`
   type Apiary {
     name: String
 
-     savedHive: [Hive]
-     savedBeeFeeder: [BeeFeeder]
+    Hive: [Hive]
+    BeeFeeder: [BeeFeeder]
   }
 
   input ApiaryInput {
     name: String
-
   }
 
   type Hive {

@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 
-// import schema from Actions.js
+// import schema from Apiary
 const apiarySchema = require("./Apiary");
 
 const userSchema = new Schema(

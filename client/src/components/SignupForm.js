@@ -217,15 +217,15 @@ const SignupForm = () => {
         <Button
           disabled={
             !(
-              userFormData.fName &&
-              userFormData.lName &&
+              //userFormData.fName &&
+              //userFormData.lName &&
               userFormData.email &&
               userFormData.username &&
-              userFormData.password &&
-              userFormData.address &&
-              userFormData.city &&
-              userFormData.state &&
-              userFormData.zipCode
+              userFormData.password 
+             // userFormData.address &&
+             // userFormData.city &&
+             // userFormData.state &&
+              //userFormData.zipCode
             )
           }
           type="submit"

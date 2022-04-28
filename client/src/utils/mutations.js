@@ -58,7 +58,7 @@ export const ADD_BEEFEEDER = gql`
 `;
 
 export const REMOVE_APIARY = gql`
-  mutation removeApiary($apiary: name: $name) {
+  mutation removeApiary($apiaryData: ApiaryInput) {
     removeApiary(_id: $_id) {
       _id
       username

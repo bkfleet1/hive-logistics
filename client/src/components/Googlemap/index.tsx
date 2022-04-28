@@ -31,6 +31,7 @@ const Googlemap: React.VFC = () => {
   const [lat, setLat] = React.useState([36.610682662075725]);
   const [lng, setLng] = React.useState([-98.77478189719483]);
   const [zoom, setZoom] = React.useState(5);
+  const [hiveName, setHiveName] = React.useState([]);
   const [center, setCenter] = React.useState<google.maps.LatLngLiteral>({
     lat: 36.610682662075725,
     lng: -98.77478189719483,
@@ -92,7 +93,7 @@ const Googlemap: React.VFC = () => {
   //   // { enableHighAccuracy: true, timeout: 5000, maximumAge: 5000 }
   // );
 
-
+  
 
   const form = (
     <div
@@ -103,6 +104,14 @@ const Googlemap: React.VFC = () => {
         overflow: "auto",
       }}
     >
+      <label htmlFor="zoom">Name</label>
+      <input
+        type="text"
+        id="name"
+        className="textField"
+        name="name"
+        onChange={(h) => setHiveName(h.target.value)}
+      />
       <label htmlFor="zoom">Zoom</label>
       <input
         type="number"
@@ -156,7 +165,7 @@ const Googlemap: React.VFC = () => {
           style={{ flexGrow: "1", height: "100%" }}
         >
           {clicks.map((latLng, i) => (
-            <Marker key={i} position={latLng} />
+            <Marker key={i} position={latLng} label={hiveName} />
           ))}
         </Map>
         <div className="mapstats">
@@ -232,6 +241,7 @@ const Map: React.FC<MapProps> = ({
 
 const Marker: React.FC<google.maps.MarkerOptions> = (options) => {
   const [marker, setMarker] = React.useState<google.maps.Marker>();
+
 
   React.useEffect(() => {
     if (!marker) {

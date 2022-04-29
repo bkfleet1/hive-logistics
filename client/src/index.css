@@ -17,6 +17,13 @@ iframe, map {
   font-size: larger;
 }
 
+.marker label {
+    bottom: 6px;
+    left: 0;
+    position: relative;
+    background-color: white;
+}
+
 html,
 body,
 #root {

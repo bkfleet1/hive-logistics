@@ -30,7 +30,7 @@ const Googlemap: React.VFC = () => {
   // const [locationState, setLocationState] = useState([]);
   const [lat, setLat] = React.useState([36.610682662075725]);
   const [lng, setLng] = React.useState([-98.77478189719483]);
-  const [zoom, setZoom] = React.useState(5);
+  const [zoom, setZoom] = React.useState(3);
   const [hiveName, setHiveName] = React.useState([]);
   const [center, setCenter] = React.useState<google.maps.LatLngLiteral>({
     lat: 36.610682662075725,
@@ -39,10 +39,13 @@ const Googlemap: React.VFC = () => {
 
 
   const mapType = "hybrid";
-  const image =
-  "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
-  const onClick = (e: google.maps.MapMouseEvent) => {
+  const image = {
+    url: "../assets/images/hive.png",
+  }
+  
 
+
+  const onClick = (e: google.maps.MapMouseEvent) => {
     setClicks([e.latLng!]);
   };
 
@@ -131,7 +134,7 @@ const Googlemap: React.VFC = () => {
         name="latitude"
         value={lat}
         readOnly
-        onChange={(event) => setLat({ lat: Number(event.target.value) })}
+        // onChange={(event) => setLat({ lat: Number(event.target.value) })}
       />
       <br />
       <label htmlFor="lng">Longitude</label>
@@ -142,7 +145,7 @@ const Googlemap: React.VFC = () => {
         name="longitude"
         value={lng}
         readOnly
-        onChange={(event) => setLng({ lng: Number(event.target.value) })}
+        // onChange={(event) => setLng({ lng: Number(event.target.value) })}
       />
       <br />
 
@@ -166,7 +169,7 @@ const Googlemap: React.VFC = () => {
           style={{ flexGrow: "1", height: "100%" }}
         >
           {clicks.map((latLng, i) => (
-            <Marker key={i} position={latLng} label={hiveName} icon={image}/>
+            <Marker key={i} className="marker" position={latLng} label={hiveName} icon={image}/>
           ))}
         </Map>
         <div className="mapstats">

@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import {
   ApolloProvider,
   ApolloClient,
@@ -6,7 +7,7 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 import Home from "./components/Home";
 import LoginForm from "./components/LoginForm";
 import Apiary from "./components/Apiary";
@@ -18,6 +19,9 @@ import Cancel from "./components/Cancel";
 import Hive from "./components/Hive";
 import ShareFeeder from "./components/ShareFeeder";
 
+const httpLink = createHttpLink({
+  uri: "/graphql",
+});
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem("id_token");
@@ -29,9 +33,7 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
-const httpLink = createHttpLink({
-  uri: "/graphql",
-});
+
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),

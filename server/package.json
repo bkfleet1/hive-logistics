@@ -15,11 +15,11 @@
     "apollo-server-express": "*",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
+    "create-react-app": "^1.2.1",
+    "express": "^4.17.3",
     "graphql": "^15.5.0",
     "jsonwebtoken": "*",
     "mongoose": "^6.0.13",
-    "react-router-dom": "^6.3.0",
     "stripe": "^8.217.0"
   },
   "devDependencies": {

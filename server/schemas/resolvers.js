@@ -16,29 +16,37 @@ const resolvers = {
     },
   },
   Mutation: {
-    addUser: async (_parent, args) => {
-      const user = await User.create({ ...args });
-      const token = signToken(user);
-
-      return { token, user };
-    },
-
-    login: async (_parent, { email, password }) => {
+    
+    login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError("Incorrect credentials!");
+        throw new AuthenticationError('Incorrect credentials');
       }
 
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new AuthenticationError("Incorrect Password!");
+        throw new AuthenticationError('Incorrect credentials');
       }
 
       const token = signToken(user);
       return { token, user };
     },
+
+    addUser: async (parent, args) => {
+      const user = await User.create({ ...args });
+      const token = signToken(user);
+      return { token, user };
+    },
+
+
+    // addUser: async (_parent, args) => {
+    //   const user = await User.create({ ...args });
+    //   const token = signToken(user);
+
+    //   return { token, user };
+    // },
 
     addApiary: async (_parent, apiaryData, context) => {
       console.log(context);

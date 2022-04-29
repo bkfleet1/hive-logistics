@@ -71,7 +71,7 @@ userSchema.methods.isCorrectPassword = async function (password) {
 };
 
 // when we query a user, we'll also get another field called `apiaryCount` with the number of saved apiary we have
-userSchema.virtual("apiaryCount").get(function () {
+userSchema.virtual('apiaryCount').get(function () {
   return this.savedApiary.length;
 });
 

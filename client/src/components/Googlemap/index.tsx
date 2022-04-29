@@ -39,7 +39,8 @@ const Googlemap: React.VFC = () => {
 
 
   const mapType = "hybrid";
-
+  const image =
+  "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
   const onClick = (e: google.maps.MapMouseEvent) => {
 
     setClicks([e.latLng!]);
@@ -165,7 +166,7 @@ const Googlemap: React.VFC = () => {
           style={{ flexGrow: "1", height: "100%" }}
         >
           {clicks.map((latLng, i) => (
-            <Marker key={i} position={latLng} label={hiveName} />
+            <Marker key={i} position={latLng} label={hiveName} icon={image}/>
           ))}
         </Map>
         <div className="mapstats">

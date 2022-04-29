@@ -4,7 +4,7 @@ const { gql } = require("apollo-server-express");
 // create our typeDefs
 const typeDefs = gql`
   type User {
-    _id: ID!
+    _id: ID
     username: String
     email: String
     fName: String
@@ -13,7 +13,7 @@ const typeDefs = gql`
     city: String
     zipCode: String
     apiaryCount: Int
-    savedApiary: [Apiary]
+    Apiary: [Apiary]
   }
   # type Actions {
   #   _id: ID!
@@ -25,16 +25,19 @@ const typeDefs = gql`
   #   link: String
   #   savedUsers: [User]
   # }
+
   type Apiary {
+    _id: ID
     name: String
-  
     Hive: [Hive]
     ShareFeeder: [ShareFeeder]
   }
 
   input ApiaryInput {
     name: String
-  }
+   }
+
+  
    input HiveInput {
     name: String
   }
@@ -44,6 +47,7 @@ const typeDefs = gql`
   }
 
   type Hive {
+    _id: ID
     name: String
     latitude: String
     longitude: String
@@ -56,6 +60,7 @@ const typeDefs = gql`
     DeploymentDate: String
   }
   type ShareFeeder {
+    _id: ID
     name: String
     latitude: String
     longitude: String
@@ -73,8 +78,9 @@ const typeDefs = gql`
 
   type Mutation {
     login(email: String!, password: String!): Auth
-    addUser(username: String!, email: String!, password: String!): User
-    addApiary(apiaryData: ApiaryInput): User
+    addUser(username: String!, email: String!, password: String!): Auth
+    # addApiary(name: String!): User
+   addApiary(apiaryData: ApiaryInput): User
     addHive(hiveData: HiveInput): Apiary
     addBeeFeeder(beeFeederData: BeeFeederInput): Apiary
     removeApiary(_Id: ID!): User

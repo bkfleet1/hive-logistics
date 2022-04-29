@@ -25,10 +25,20 @@ export const ADD_USER = gql`
   }
 `;
 
+// export const ADD_APIARY = gql`
+//   mutation addApiary($name: String) {
+//     addApiary(name: $name) {
+//       Apiary {
+//         name
+//       }
+//     }
+//   }
+// `;
+
 export const ADD_APIARY = gql`
   mutation addApiary($apiaryData: ApiaryInput) {
     addApiary(apiaryData: $apiaryData) {
-      savedApiary {
+      Apiary {
         name
       }
     }
@@ -64,7 +74,7 @@ export const REMOVE_APIARY = gql`
       _id
       username
       email
-      savedApiary {
+      Apiary {
         _id
         name
       }

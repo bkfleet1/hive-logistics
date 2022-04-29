@@ -7,20 +7,21 @@ import {
   Button,
 } from "react-bootstrap";
 import { useQuery, useMutation } from "@apollo/client";
-import { GET_ME, QUERY_USER } from "../utils/queries";
+import { GET_ME, GET_APIARY} from "../utils/queries";
 import { REMOVE_APIARY } from "../utils/mutations";
 import { removeApiaryId } from "../utils/localStorage";
 import Auth from "../utils/auth";
 
 const SavedApiary = () => {
-  const { loading, data } = useQuery(GET_ME);
+   const { loading, data } = useQuery(GET_ME);
+  // const { loading, data } = useQuery(GET_APIARY);
   // const { data } = useQuery(QUERY_USER);
   //const { loading, data } = useQuery(QUERY_USER);
   const [removeApiary, { error }] = useMutation(REMOVE_APIARY);
 
   const userData = data?.me || {};
 
-  // create function that accepts the apiary's _id value as param and deletes the book from the database
+  // create function that accepts the apiary's _id value as param and deletes  from the database
   const handleDeleteApiary = async (_id) => {
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -55,14 +56,14 @@ const SavedApiary = () => {
       </Jumbotron>
       <Container>
         <h2>
-          {userData.savedApiary?.length
-            ? `Viewing ${userData.savedApiary.length} saved ${
-                userData.savedApiary.length === 1 ? "apiary" : "apiaries"
+          {userData.Apiary?.length
+            ? `Viewing ${userData.Apiary.length} saved ${
+                userData.Apiary.length === 1 ? "apiary" : "apiaries"
               }:`
             : "You have no saved apiary!"}
         </h2>
         <CardColumns>
-          {userData.savedApiary?.map((apiary) => {
+          {userData.Apiary?.map((apiary) => {
             return (
               <Card key={apiary._id} border="dark">
                 <Card.Body>

@@ -7,7 +7,7 @@ export const GET_ME = gql`
       _id
       username
       email
-      savedApiary {
+      Apiary {
         _id
         name
       }
@@ -61,6 +61,15 @@ export const QUERY_USER = gql`
 `;
 
 export const QUERY_APIARY = gql`
+  {
+    apiary {
+      _id
+      name
+    }
+  }
+`;
+
+export const GET_APIARY = gql`
   {
     apiary {
       _id

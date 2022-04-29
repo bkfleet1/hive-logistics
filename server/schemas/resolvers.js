@@ -16,43 +16,69 @@ const resolvers = {
     },
   },
   Mutation: {
-    addUser: async (_parent, args) => {
+    addUser: async (parent, args) => {
       const user = await User.create({ ...args });
       const token = signToken(user);
-
       return { token, user };
     },
 
-    login: async (_parent, { email, password }) => {
+    login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError("Incorrect credentials!");
+        throw new AuthenticationError("Incorrect credentials");
       }
 
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new AuthenticationError("Incorrect Password!");
+        throw new AuthenticationError("Incorrect credentials");
       }
 
       const token = signToken(user);
       return { token, user };
     },
 
-    addApiary: async (_parent, apiaryData, context) => {
-      console.log(context);
+    // addUser: async (_parent, args) => {
+    //   const user = await User.create({ ...args });
+    //   const token = signToken(user);
+
+    //   return { token, user };
+    // },
+
+    //  addApiary: async (parent, args) => {
+    //   const apiary = await Apiary.create({ ...args });
+    //   const token = signToken(apiary);
+
+    //   return { token, apiary };
+    // },
+
+    addApiary: async (parent, { apiaryData }, context) => {
+      console.log(context.user);
       if (context.user) {
-        const apiary = new Apiary({ apiaryData });
-        await User.findByIdAndUpdate(
+        const updatedUser = await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $push: { savedApiary: apiaryData } },
+          { $push: { Apiary: apiaryData } },
           { new: true }
         );
-        return apiary;
+        return updatedUser;
       }
       throw new AuthenticationError("You need to be logged in!");
     },
+
+    //  addApiary: async (_parent, {_id},context) => {
+    //   console.log(context.user);
+    //   if (context.user) {
+    //     const updatedUser = new Apiary({ });
+    //     await User.findByIdAndUpdate(
+    //       { _id: context.user._id },
+    //       { $push: { Apiary: apiaryData } },
+    //       { new: true }
+    //     );
+    //     return updatedUser;
+    //   }
+    //   throw new AuthenticationError("You need to be logged in!");
+    // },
 
     addHive: async (_parent, hiveData, context) => {
       console.log(context);

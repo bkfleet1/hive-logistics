@@ -10,16 +10,17 @@ const Apiary = () => {
     name: "",
   });
   // set state for form validation
-  const [validated, setValidated] = useState(false);
+    const [validated, setValidated] = useState(false);
+    //  const [validated] = useState(false);
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
 
-  const [addApiary, { data, loading, error}] = useMutation(ADD_APIARY);
-  // console.log(addApiary);
+  //  const [addApiary, { error }] = useMutation(ADD_APIARY);
+   const [addApiary, { data, loading, error}] = useMutation(ADD_APIARY);
+   console.log(addApiary);
 
   const handleInputChange = (event) => {
-    const { name, value } = event.target;
- 
+     const { name, value } = event.target;
     setApiaryFormData({ ...apiaryFormData, [name]: value });
    
   };
@@ -34,22 +35,24 @@ const Apiary = () => {
       event.stopPropagation();
     }
 
-    setValidated(true);
+       setValidated(true);
 
     try {
       console.log(apiaryFormData);
-      addApiary({
-        variables: {name:apiaryFormData }
-        
+        const { data } = await addApiary({
+      // addApiary({
+        // variables: {name:apiaryFormData }
+        //  variables: { ...apiaryFormData }
+           variables: { apiaryData: { ...apiaryFormData } },
       });
-      setApiaryFormData({
-       apiaryFormData
-     
-      });
-      //Auth.login(data.addApiary.token);
-    } catch (e) {
+       } catch (e) {
       console.error(e);
     }
+      setApiaryFormData({
+      //  apiaryFormData
+      name:"",
+     
+      });
   };
 
   return (
@@ -69,7 +72,7 @@ const Apiary = () => {
         <Form.Group>
           <Form.Label htmlFor="name">Name</Form.Label>
           <Form.Control
-            type="text"
+            type="input"
             placeholder="Name:"
             name="name"
             onChange={handleInputChange}
@@ -82,7 +85,7 @@ const Apiary = () => {
         </Form.Group>
 
         <Button disabled={!apiaryFormData.name} type="submit" variant="success">
-          Add
+            Add
         </Button>
       </Form>
     </>

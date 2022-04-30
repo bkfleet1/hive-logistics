@@ -1,1 +1,16 @@
+<<<<<<< HEAD
 .env
+=======
+node_modules
+.env
+.DS_Store
+.log
+.lock
+.tmp
+.o
+.class
+.vsdx
+.psd
+.ai
+Thumbs.db
+>>>>>>> de775790ede65ef3f3631ce9fd8125d60c310345

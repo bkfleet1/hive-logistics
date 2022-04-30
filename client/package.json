@@ -1,0 +1,54 @@
+{
+  "name": "hive-logistics",
+  "homepage": "https://hive-logistics.herokuapp.com",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@googlemaps/react-wrapper": "*",
+    "@googlemaps/typescript-guards": "*",
+    "@react-google-maps/api": "^2.8.1",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^12.8.3",
+    "create-react-app": "^1.2.1",
+    "fast-equals": "^2.0.3",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-scripts": "^5.0.1",
+    "web-vitals": "^1.1.2"
+  },
+  "devDependencies": {
+    "@types/google.maps": "^3.48.5",
+    "typescript": "^4.6.3",
+    "@googlemaps/react-wrapper": "*",
+    "@googlemaps/typescript-guards": "*"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "description": "Hive Logistics is a mobile-responsive, web application for managing hobbyist and commercial apiaries. Using geolocation, beekeepers can mark the location of individual hives and community feeders, and record activities, such as inspections, treatments, feedings, requeening, and harvesting honey. Hive Logistics will make your beekeeping more enjoyable and result in healthier, more productive honey bees.",
+  "main": "index.js",
+  "author": "Maria Jayakumar, Jamie Jackson, Brad Kelley",
+  "license": "ISC"
+}

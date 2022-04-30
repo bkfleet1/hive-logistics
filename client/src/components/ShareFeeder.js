@@ -63,7 +63,8 @@ const ShareFeeder = () => {
         </Alert>
 
         <Form.Group>
-          <Form.Label htmlFor="name">Name</Form.Label>
+         <h1>Share Feeders's Section</h1>
+          <Form.Label htmlFor="name">Name:</Form.Label>
           <Form.Control
             type="text"
             placeholder="Name:"
@@ -76,6 +77,9 @@ const ShareFeeder = () => {
             Name is required!
           </Form.Control.Feedback>
         </Form.Group>
+         <Button disabled={!beeFeederFormData.name} type="submit" variant="success">
+          Add
+        </Button>
       </Form>
     </>
   );

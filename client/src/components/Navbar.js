@@ -29,8 +29,17 @@ const AppNavbar = () => {
               {/* if user is logged in show Apiary history and logout */}
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link as={Link} to="/saved">
-                    Apiary Home
+                  <Nav.Link as={Link} to="/add">
+                     Add Apiary
+                  </Nav.Link>
+                   <Nav.Link as={Link} to="/saved-apiary">
+                     View Your Apiary
+                  </Nav.Link>
+                  <Nav.Link as={Link} to="/saved-hive">
+                     Hive
+                  </Nav.Link>
+                  <Nav.Link as={Link} to="/saved-feeder">   
+                  Feeder
                   </Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
@@ -39,7 +48,7 @@ const AppNavbar = () => {
                   Login/Sign Up
                 </Nav.Link>
               )}
-              <Nav.Link as={Link} to="/checkout">
+              <Nav.Link as={Link} to="/donate">
                 Donate
               </Nav.Link>
             </Nav>

@@ -49,13 +49,13 @@ function App() {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/" component={LoginForm} />
-            <Route exact path="/saved" component={Apiary} />
-            <Route exact path="/saved" component={SavedApiary} />
-            <Route exact path="/saved" component={Hive} />
-            <Route exact path="/saved" component={ShareFeeder} />
-            <Route path="/" component={Donate} />
-            <Route path="/" component={Success} />
-            <Route path="/" component={Cancel}/>
+            <Route exact path="/add" component={Apiary} />
+            <Route exact path="/saved-apiary" component={SavedApiary} />
+            <Route exact path="/saved-hive" component={Hive} />
+            <Route exact path="/saved-feeder" component={ShareFeeder} />
+            <Route path="/donate" component={Donate} />
+            <Route path="/success" component={Success} />
+            <Route path="/cancel" component={Cancel}/>
 
             <Route render={() => <h1 className="display-2">Wrong page!</h1>} />
           </Switch>

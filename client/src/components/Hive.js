@@ -65,7 +65,8 @@ const Hive = () => {
         </Alert>
 
         <Form.Group>
-          <Form.Label htmlFor="name">Name</Form.Label>
+         <h1>Hive's Section</h1>
+          <Form.Label htmlFor="name">Name:</Form.Label>
           <Form.Control
             type="text"
             placeholder="Name:"
@@ -114,6 +115,9 @@ const Hive = () => {
           value={hiveFormData.acquisitionDate}
           required
         </Form.Group>
+         <Button disabled={!hiveFormData.name} type="submit" variant="success">
+          Add
+        </Button>
       </Form>
     </>
   );

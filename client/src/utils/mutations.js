@@ -38,7 +38,7 @@ export const ADD_USER = gql`
 export const ADD_APIARY = gql`
   mutation addApiary($apiaryData: ApiaryInput) {
     addApiary(apiaryData: $apiaryData) {
-      Apiary {
+      savedApiary {
         name
       }
     }
@@ -74,7 +74,7 @@ export const REMOVE_APIARY = gql`
       _id
       username
       email
-      Apiary {
+      savedApiary {
         _id
         name
       }

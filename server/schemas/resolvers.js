@@ -56,9 +56,11 @@ const resolvers = {
     addApiary: async (parent, { apiaryData }, context) => {
       console.log(context.user);
       if (context.user) {
+        const apiary = new Apiary({ hiveData });
+        apiary.save().then(() => console.log("Apiary Save"));
         const updatedUser = await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $push: { Apiary: apiaryData } },
+          { $push: { savedApiary: apiaryData } },
           { new: true }
         );
         return updatedUser;
@@ -84,6 +86,7 @@ const resolvers = {
       console.log(context);
       if (context.user) {
         const hive = new Hive({ hiveData });
+        hive.save().then(() => console.log("Hive Save"));
         await User.findByIdAndUpdate(
           { _id: context.user._id },
           { $push: { Hive: hiveData } },

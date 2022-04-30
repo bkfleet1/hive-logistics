@@ -45,7 +45,7 @@ const userSchema = new Schema(
       required: true,
     },
     // set savedApiary to be an array of data that adheres to the apiarySchema
-    Apiary: [Apiary.schema],
+    savedApiary: [new Apiary().schema]
   },
   // set this to use virtual below
   {
@@ -72,11 +72,7 @@ userSchema.methods.isCorrectPassword = async function (password) {
 
 // when we query a user, we'll also get another field called `apiaryCount` with the number of saved apiary we have
 userSchema.virtual('apiaryCount').get(function () {
-<<<<<<< HEAD
-  return this.Apiary.length;
-=======
   return this.savedApiary.length;
->>>>>>> 53882e7405adcbdd5db06f54b65cf7f419050e39
 });
 
 const User = model("User", userSchema);

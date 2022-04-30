@@ -20,6 +20,7 @@ const SavedApiary = () => {
   const [removeApiary, { error }] = useMutation(REMOVE_APIARY);
 
   const userData = data?.me || {};
+  
 
   // create function that accepts the apiary's _id value as param and deletes  from the database
   const handleDeleteApiary = async (_id) => {
@@ -46,24 +47,26 @@ const SavedApiary = () => {
   if (loading) {
     return <h2>LOADING...</h2>;
   }
-
+ console.log(userData.username);
   return (
     <>
       <Jumbotron fluid className="text-light bg-dark">
         <Container>
+        
           <h1>Viewing {userData.username}'s apiaries!</h1>
+         
         </Container>
       </Jumbotron>
       <Container>
         <h2>
-          {userData.Apiary?.length
-            ? `Viewing ${userData.Apiary.length} saved ${
-                userData.Apiary.length === 1 ? "apiary" : "apiaries"
+          {userData.savedApiary?.length
+            ? `Viewing ${userData.savedApiary.length} saved ${
+                userData.savedApiary.length === 1 ? "apiary" : "apiaries"
               }:`
             : "You have no saved apiary!"}
         </h2>
         <CardColumns>
-          {userData.Apiary?.map((apiary) => {
+          {userData.savedApiary?.map((apiary) => {
             return (
               <Card key={apiary._id} border="dark">
                 <Card.Body>

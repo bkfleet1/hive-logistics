@@ -10,19 +10,18 @@ const Apiary = () => {
     name: "",
   });
   // set state for form validation
-    const [validated, setValidated] = useState(false);
-    //  const [validated] = useState(false);
+  const [validated, setValidated] = useState(false);
+  //  const [validated] = useState(false);
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
 
   //  const [addApiary, { error }] = useMutation(ADD_APIARY);
-   const [addApiary, { data, loading, error}] = useMutation(ADD_APIARY);
-   console.log(addApiary);
+  const [addApiary, { data, loading, error }] = useMutation(ADD_APIARY);
+  console.log(addApiary);
 
   const handleInputChange = (event) => {
-     const { name, value } = event.target;
+    const { name, value } = event.target;
     setApiaryFormData({ ...apiaryFormData, [name]: value });
-   
   };
 
   const handleFormSubmit = async (event) => {
@@ -35,24 +34,23 @@ const Apiary = () => {
       event.stopPropagation();
     }
 
-       setValidated(true);
+    setValidated(true);
 
     try {
       console.log(apiaryFormData);
-        const { data } = await addApiary({
-      // addApiary({
+      const { data } = await addApiary({
+        // addApiary({
         // variables: {name:apiaryFormData }
         //  variables: { ...apiaryFormData }
-           variables: { apiaryData: { ...apiaryFormData } },
+        variables: { apiaryData: { ...apiaryFormData } },
       });
-       } catch (e) {
+    } catch (e) {
       console.error(e);
     }
-      setApiaryFormData({
+    setApiaryFormData({
       //  apiaryFormData
-      name:"",
-     
-      });
+      name: "",
+    });
   };
 
   return (
@@ -70,10 +68,11 @@ const Apiary = () => {
         </Alert>
 
         <Form.Group>
-          <Form.Label htmlFor="name">Name</Form.Label>
+          <h1>Apiary's Page</h1>
+          <Form.Label htmlFor="name:">Name:</Form.Label>
           <Form.Control
             type="input"
-            placeholder="Name:"
+            placeholder="Name"
             name="name"
             onChange={handleInputChange}
             value={apiaryFormData.name}
@@ -85,7 +84,7 @@ const Apiary = () => {
         </Form.Group>
 
         <Button disabled={!apiaryFormData.name} type="submit" variant="success">
-            Add
+          Add
         </Button>
       </Form>
     </>

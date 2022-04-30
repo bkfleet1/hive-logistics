@@ -1,21 +1,30 @@
-const mongoose = require("mongoose");
-
-const { Schema } = mongoose;
-// import schema Hive
-const hiveSchema = require("./Hive");
-// import schema from BeeFeeder
-const shareFeeSchema = require("./ShareFeeder");
+const { Schema, model } = require("mongoose");
 
 const apiarySchema = new Schema(
   {
+    username: {
+      type: String,
+      required: true,
+      trim: true
+    },
     name: {
       type: String,
       required: true,
+      trim: true
     },
-
     // set savedShareFeeder to be an array of data that adheres to the shareFeeSchema
-    ShareFeeder: [shareFeeSchema.schema],
-    Hive: [hiveSchema.schema],
+    hive: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Hive",
+      },
+    ],
+    shareFeeder: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "ShareFeeder",
+      },
+    ],
   },
   // set this to use virtual below
   {
@@ -24,5 +33,12 @@ const apiarySchema = new Schema(
     },
   }
 );
-const Apiary = mongoose.model("Apiary", apiarySchema);
+apiarySchema.virtual("hiveCount").get(function () {
+  return this.hive.length;
+});
+apiarySchema.virtual("shareFeederCount").get(function () {
+  return this.shareFeeder.length;
+});
+const Apiary = model("Apiary", apiarySchema);
+
 module.exports = Apiary;

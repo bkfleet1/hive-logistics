@@ -1,20 +1,22 @@
 {
-  "name": "client",
-  "version": "0.1.0",
+  "name": "hive-logistics-client",
   "private": true,
   "proxy": "http://localhost:3001",
   "dependencies": {
     "@apollo/client": "3.6.0",
+    "@googlemaps/react-wrapper": "*",
+    "@googlemaps/typescript-guards": "*",
+    "@react-google-maps/api": "^2.8.1",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
-    "bootstrap": "^4.4.1",
+    "create-react-app": "^1.2.1",
+    "fast-equals": "^2.0.3",
     "graphql": "^15.5.0",
     "graphql-tag": "^2.12.5",
     "jwt-decode": "*",
     "react": "^17.0.2",
     "react-bootstrap": "^1.0.1",
-    "create-react-app": "^1.2.1",
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.1.2",
     "react-scripts": "*",
@@ -41,5 +43,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "Hive Logistics is a mobile-responsive, web application for managing hobbyist and commercial apiaries. Using geolocation, beekeepers can mark the location of individual hives and community feeders, and record activities, such as inspections, treatments, feedings, requeening, and harvesting honey. Hive Logistics will make your beekeeping more enjoyable and result in healthier, more productive honey bees.",
+  "author": "Maria Jayakumar, Jamie Jackson, Brad Kelley",
+  "license": "ISC"
 }

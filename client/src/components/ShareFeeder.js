@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { useMutation } from "@apollo/client";
-import { ADD_BEEFEEDER } from "../utils/mutations";
+import { ADD_FEEDER } from "../utils/mutations";
 import Auth from "../utils/auth";
 
 const ShareFeeder = () => {
   // set initial form state
-  const [beeFeederFormData, setBeeFeederFormData] = useState({
+  const [feederFormData, setFeederFormData] = useState({
     name: "",
   });
   // set state for form validation
@@ -14,13 +14,13 @@ const ShareFeeder = () => {
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
 
-  const [addBeeFeeder, { data, loading, error }] = useMutation(ADD_BEEFEEDER);
-  // console.log(addBeeFeeder);
+  const [addFeeder, { error }] = useMutation(ADD_FEEDER);
+  // console.log(addFeeder);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
 
-    setBeeFeederFormData({ ...beeFeederFormData, [name]: value });
+    setFeederFormData({ ...feederFormData, [name]: value });
   };
 
   const handleFormSubmit = async (event) => {
@@ -36,12 +36,12 @@ const ShareFeeder = () => {
     setValidated(true);
 
     try {
-      console.log(beeFeederFormData);
-      addBeeFeeder({
-        variables: { name: beeFeederFormData },
+      console.log(feederFormData);
+      addFeeder({
+        variables: { name: feederFormData },
       });
-      setBeeFeederFormData({
-        beeFeederFormData,
+      setFeederFormData({
+        feederFormData,
       });
     } catch (e) {
       console.error(e);
@@ -70,14 +70,14 @@ const ShareFeeder = () => {
             placeholder="Name:"
             name="name"
             onChange={handleInputChange}
-            value={beeFeederFormData.name}
+            value={feederFormData.name}
             required
           />
           <Form.Control.Feedback type="invalid">
             Name is required!
           </Form.Control.Feedback>
         </Form.Group>
-         <Button disabled={!beeFeederFormData.name} type="submit" variant="success">
+         <Button disabled={!feederFormData.name} type="submit" variant="success">
           Add
         </Button>
       </Form>

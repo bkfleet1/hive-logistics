@@ -36,36 +36,37 @@ export const ADD_USER = gql`
 // `;
 
 export const ADD_APIARY = gql`
-  mutation addApiary($apiaryData: ApiaryInput) {
-    addApiary(apiaryData: $apiaryData) {
-      savedApiary {
-        name
-      }
+mutation addApiary($apiaryFormData: String!) {
+  addApiary(apiaryFormData: $apiaryFormData) {
+    _id
+    username
+    name
     }
-  }
+}
 `;
 
 export const ADD_HIVE = gql`
   mutation addHive($hiveData: HiveInput) {
     addHive(hiveData: $hiveData) {
-      Hive {
         name
         BeeFeeder
         acquisitionSource
         acquisitionDate
       }
-    }
   }
 `;
 
-export const ADD_BEEFEEDER = gql`
-  mutation addBeeFeeder($beeFeederData: BeeFeederInput) {
-    addBeeFeeder(beeFeederData: $beeFeederData) {
-      ShareFeeder {
-        name
+export const ADD_FEEDER = gql`
+  mutation addFeeder($feederFormData: String!) {
+    addFeeder(feederFormData: $feederFormData) {
+      _id
+      username
+      name
+      latitude
+      longitude
+      status
       }
     }
-  }
 `;
 
 export const REMOVE_APIARY = gql`
@@ -74,7 +75,7 @@ export const REMOVE_APIARY = gql`
       _id
       username
       email
-      savedApiary {
+      Apiary {
         _id
         name
       }

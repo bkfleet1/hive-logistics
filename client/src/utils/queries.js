@@ -1,125 +1,273 @@
 // import gql from "graphql-tag";
 import { gql } from '@apollo/client';
 
-export const GET_ME = gql`
+export const QUERY_ME = gql`
   {
     me {
-      _id
-      username
-      email
-      savedApiary {
-        _id
-        name
-      }
-      Hive {
-        _id
-        name
-        beeBreed
-        AcquisitionSource
-        acquisitionDate
-      }
-      ShareFeeder {
-        _id
-        name
-      }
-    }
-  }
-`;
-
-export const QUERY_USER = gql`
-  {
-    user {
+      id
       fName
       lName
-      email
-      username
       address
       city
-      state
-      zip
-
+      zipCode
+      username
+      email
+      apiaryCount
       apiary {
         _id
+        username
         name
+        hiveCount
+        shareFeederCount
         hive {
-          _id
-          name
-        beeBreed
-        AcquisitionSource
-        acquisitionDate
-          
+             _id
+            username
+            name
+            latitude
+            longitude
+            status
+            beeBreed
+            acquisitionSource
+            acquisitionDate
+            boxType
+            frameCount
+            deploymentDate
+          }
+          shareFeeder {
+            _id
+            username
+            name
+            latitude
+            longitude
+            status
+          }
         }
-        ShareFeeder {
-          _id
-          name
-        
-          
-        }
+      }
+    }
+    `;
+
+// export const QUERY_USER = gql`
+//   {
+//     user {
+//       id
+//       fName
+//       lName
+//       address
+//       city
+//       zipCode
+//       username
+//       email
+//       apiaryCount
+//       apiary {
+//         _id
+//         username
+//         name
+//         hiveCount
+//         shareFeederCount
+//         hive {
+//              _id
+//             username
+//             name
+//             latitude
+//             longitude
+//             status
+//             beeBreed
+//             acquisitionSource
+//             acquisitionDate
+//             boxType
+//             frameCount
+//             deploymentDate
+//           }
+//           shareFeeder {
+//             _id
+//             username
+//             name
+//             latitude
+//             longitude
+//             status
+//           }
+//         }
+//       }
+//     }
+//     `;
+
+
+export const QUERY_APIARY = gql`
+{
+    apiary {
+    _id
+    username
+    name
+    hiveCount
+    shareFeederCount
+    hive {
+         _id
+	      username
+	      name
+	      latitude
+	      longitude
+	      status
+	      beeBreed
+	      acquisitionSource
+	      acquisitionDate
+	      boxType
+	      frameCount
+	      deploymentDate
+      }
+      shareFeeder {
+        _id
+        username
+        name
+        latitude
+        longitude
+        status
       }
     }
   }
 `;
 
-export const QUERY_APIARY = gql`
-  {
-    apiary {
-      _id
-      name
+export const QUERY_APIARIES = gql`
+  query apiaries($username) {
+    apiaries(username: $username) {
+    _id
+    username
+    name
+    hiveCount
+    shareFeederCount
+    hive {
+         _id
+	      username
+	      name
+	      latitude
+	      longitude
+	      status
+	      beeBreed
+	      acquisitionSource
+	      acquisitionDate
+	      boxType
+	      frameCount
+	      deploymentDate
+      }
+      shareFeeder {
+        _id
+        username
+        name
+        latitude
+        longitude
+        status
+      }
     }
   }
 `;
 
-export const GET_APIARY = gql`
-  {
-    apiary {
-      _id
-      name
-    }
-  }
-`;
 
 export const QUERY_HIVE = gql`
-  {
-    hive {
+{
+  hive {
       _id
-      name
-      beeBreed
-      AcquisitionSource
-      acquisitionDate
-    }
-  }
+     username
+     name
+     latitude
+     longitude
+     status
+     beeBreed
+     acquisitionSource
+     acquisitionDate
+     boxType
+     frameCount
+     deploymentDate
+ }
+}
 `;
-export const QUERY_FEEDER = gql`
-  {
-    ShareFeeder {
+
+export const QUERY_HIVES = gql`
+query hives($username) {
+  hives(username: $username) {
       _id
-      name
-    }
-  }
+     username
+     name
+     latitude
+     longitude
+     status
+     beeBreed
+     acquisitionSource
+     acquisitionDate
+     boxType
+     frameCount
+     deploymentDate
+ }
+}
+`;
+
+
+export const QUERY_FEEDER = gql`
+{
+  shareFeeder{
+      _id
+     username
+     name
+     latitude
+     longitude
+     status
+     beeBreed
+     acquisitionSource
+     acquisitionDate
+     boxType
+     frameCount
+     deploymentDate
+ }
+}
+`;
+
+export const QUERY_FEEDERS = gql`
+query shareFeeders($username) {
+  shareFeeders(username: $username) {
+      _id
+     username
+     name
+     latitude
+     longitude
+     status
+     beeBreed
+     acquisitionSource
+     acquisitionDate
+     boxType
+     frameCount
+     deploymentDate
+ }
+}
 `;
 
 export const QUERY_APIARY_ALL = gql`
-  {
-    user {
+query apiaries($username) {
+  apiaries(username: $username) {
+  _id
+  username
+  name
+  hiveCount
+  shareFeederCount
+  hive {
+       _id
+      username
+      name
+      latitude
+      longitude
+      status
+      beeBreed
+      acquisitionSource
+      acquisitionDate
+      boxType
+      frameCount
+      deploymentDate
+    }
+    shareFeeder {
       _id
-      apiary {
-        _id
-        name
-        hive {
-          _id
-          name
-        beeBreed
-        AcquisitionSource
-        acquisitionDate
-          
-        }
-        ShareFeeder {
-          _id
-          name
-        
-          
-        }
-      }
+      username
+      name
+      latitude
+      longitude
+      status
     }
   }
+}
 `;

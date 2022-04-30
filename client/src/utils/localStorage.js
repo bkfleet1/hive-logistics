@@ -1,9 +1,9 @@
-export const getSavedApiaryIds = () => {
-  const savedApiaryIds = localStorage.getItem("saved_apiary")
+export const getApiaryIds = () => {
+  const ApiaryIds = localStorage.getItem("saved_apiary")
     ? JSON.parse(localStorage.getItem("saved_apiary"))
     : [];
 
-  return savedApiaryIds;
+  return ApiaryIds;
 };
 
 export const saveApiaryIds = (apiaryIdArr) => {
@@ -15,18 +15,18 @@ export const saveApiaryIds = (apiaryIdArr) => {
 };
 
 export const removeApiaryId = (_id) => {
-  const savedApiaryIds = localStorage.getItem("saved_apiary")
+  const ApiaryIds = localStorage.getItem("saved_apiary")
     ? JSON.parse(localStorage.getItem("saved_apiary"))
     : null;
 
-  if (!savedApiaryIds) {
+  if (!ApiaryIds) {
     return false;
   }
 
-  const updatedSavedApiaryIds = savedApiaryIds?.filter(
-    (savedApiaryId) => savedApiaryId !== _id
+  const updatedApiaryIds = ApiaryIds?.filter(
+    (ApiaryId) => ApiaryId !== _id
   );
-  localStorage.setItem("saved_apiary", JSON.stringify(updatedSavedApiaryIds));
+  localStorage.setItem("saved_apiary", JSON.stringify(updatedApiaryIds));
 
   return true;
 };

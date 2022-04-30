@@ -1,25 +1,30 @@
-const mongoose = require('mongoose');
+const { Schema, model } = require('mongoose');
 
-const { Schema } = mongoose;
-
-const shareFeeSchema = new Schema({
+const shareFeederSchema = new Schema({
+  username: {
+    type: String,
+    required: true
+  },
   name: {
     type: String,
     required: true,
-  },
-
-  longitude: {
-    type: String,
-    required: true,
+    trim: true
   },
   longitude: {
     type: String,
     required: true,
+    trim: true,
+  },
+  longitude: {
+    type: String,
+    required: true,
+    trim: true
   },
   status: {
     type: String,
+    trim: true
   }
 });
 
-const ShareFeeder = mongoose.model("ShareFeeder", shareFeeSchema);
+const ShareFeeder = model("ShareFeeder", shareFeederSchema);
 module.exports = ShareFeeder;

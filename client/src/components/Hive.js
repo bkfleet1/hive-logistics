@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { useMutation } from "@apollo/client";
 import { ADD_HIVE } from "../utils/mutations";
+// import { QUERY_HIVES, QUERY_ME } from '../utils/queries';
 import Auth from "../utils/auth";
 
 const Hive = () => {
@@ -15,7 +16,7 @@ const Hive = () => {
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
 
-  const [addHive, { data, loading, error }] = useMutation(ADD_HIVE);
+  const [addHive, { error }] = useMutation(ADD_HIVE);
   // console.log(addHive);
 
   const handleInputChange = (event) => {

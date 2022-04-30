@@ -6,14 +6,48 @@ const resolvers = {
   Query: {
     me: async (_parent, _args, context) => {
       if (context.user) {
-        const userData = await User.findOne({ _id: context.user._id }).select(
-          "-__v -password"
-        );
-
+        const userData = await User.findOne({ _id: context.user._id })
+        .select('-__v -password')
+        .populate('Apiary')
         return userData;
       }
       throw new AuthenticationError("You need to be logged in!");
     },
+    users: async () => {
+      return User.find()
+      .select('-__v -password')
+      .populate('Apiary')
+    },
+    user: async (parent, { username }) => {
+      return User.findOne({ username })
+      .select('-__v -password')
+      .populate('Apiary')
+    },
+    apiaries: async (parent, { username }) => {
+      const params = username ? { username } : {};
+      return Apiary.find(params)
+      .populate('hive')
+      .populate('shareFeeder')
+    },
+    apiary: async (parent, { _id }) => {
+      return Apiary.findOne({ _id })
+      .populate('hive')
+      .populate('shareFeeder')
+    },
+    hives: async (parent, { username }) => {
+      const params = username ? { username } : {};
+      return Hive.find(params)
+    },
+    hive: async (parent, { _id }) => {
+      return Hive.findOne({ _id })
+    },
+    shareFeeders: async (parent, { username }) => {
+      const params = username ? { username } : {};
+      return ShareFeeder.find(params)
+    },
+    shareFeeder: async (parent, { _id }) => {
+      return ShareFeeder.findOne({ _id })
+    }
   },
   Mutation: {
     addUser: async (parent, args) => {
@@ -53,17 +87,30 @@ const resolvers = {
     //   return { token, apiary };
     // },
 
-    addApiary: async (parent, { apiaryData }, context) => {
-      console.log(context.user);
+    // addApiary: async (parent, { apiaryData }, context) => {
+    //   console.log(context.user);
+    //   if (context.user) {
+    //     const apiary = new Apiary({ hiveData });
+    //     apiary.save().then(() => console.log("Apiary Save"));
+    //     const updatedUser = await User.findByIdAndUpdate(
+    //       { _id: context.user._id },
+    //       { $push: { Apiary: apiaryData } },
+    //       { new: true }
+    //     );
+    //     return updatedUser;
+    //   }
+    //   throw new AuthenticationError("You need to be logged in!");
+    // },
+
+    addApiary: async (parent, { apiaryFormData }, context) => {
       if (context.user) {
-        const apiary = new Apiary({ hiveData });
-        apiary.save().then(() => console.log("Apiary Save"));
-        const updatedUser = await User.findByIdAndUpdate(
+        const apiaryNew = await Apiary.create({ ...apiaryFormData, username: context.user.username });
+        await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $push: { savedApiary: apiaryData } },
+          { $push: { apiary: apiaryNew._id } },
           { new: true }
         );
-        return updatedUser;
+        return apiaryNew;
       }
       throw new AuthenticationError("You need to be logged in!");
     },
@@ -96,24 +143,24 @@ const resolvers = {
       }
     },
 
-    addBeeFeeder: async (_parent, beeFeederData, context) => {
-      console.log(beeFeederData);
+    addFeeder: async (_parent, {feederFormData}, context) => {
       if (context.user) {
-        const feeder = new ShareFeeder({ beeFeederData });
-        await User.findByIdAndUpdate(
-          { _id: context.user._id },
-          { $push: { ShareFeeder: beeFeederData } },
+        const feederNew = await ShareFeeder.create({ ...feederFormData, username: context.user.username });
+        await Apiary.findByIdAndUpdate(
+          { _id: context.user.username },
+          { $push: { shareFeeder: feederNew._id } },
           { new: true }
         );
-        return feeder;
+        return apiaryNew;
       }
+      throw new AuthenticationError("You need to be logged in!");
     },
 
     // removeApiary: async (_parent, { _id }, context) => {
     //   if (context.user) {
     //     const updatedUser = await User.findOneAndUpdate(
     //       { _id: context.user._id },
-    //       { $pull: { savedApiary: { _id } } },
+    //       { $pull: { Apiary: { _id } } },
     //       { new: true }
     //     );
     //     return updatedUser;

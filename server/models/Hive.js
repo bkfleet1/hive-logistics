@@ -1,11 +1,16 @@
 const { Schema, model } = require("mongoose");
 
 const hiveSchema = new Schema({
+  username: {
+    type: String,
+    required: true,
+    trim: true,
+  },
   name: {
     type: String,
     required: true,
+    trim: true,
   },
-
   latitude: {
     type: String,
   },
@@ -22,13 +27,12 @@ const hiveSchema = new Schema({
   beeBreed: {
     type: String,
   },
-  applicationSource: {
+  acquisitionSource: {
     type: String,
   },
   acquisitionDate: {
     type: Date,
     default: Date.now
-   
   },
   boxType: {
     type: String,

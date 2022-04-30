@@ -17,7 +17,7 @@ const actionsSchema = new Schema({
   quantity: {
     type: String,
   },
-  uam: {
+  uom: {
     type: String,
   },
   // actionDate: {

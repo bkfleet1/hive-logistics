@@ -3,40 +3,74 @@ const { gql } = require("apollo-server-express");
 
 // create our typeDefs
 const typeDefs = gql`
-  type User {
-    _id: ID
+type User {
+  _id: ID
+  fName: String
+  lName: String
+  address: String
+  city: String
+  zipCode: String
+  username: String
+  email: String
+  apiary: [Apiary]
+  apiaryCount: Int
+}
+
+type Apiary {
+  _id: ID
+  username: String
+  name: String
+  hive: [Hive]
+  shareFeeder: [ShareFeeder]
+  hiveCount: Int
+  shareFeederCount: Int
+}
+
+type Hive {
+  _id: ID
+  username: String
+  name: String
+  latitude: String
+  longitude: String
+  status: String
+  beeBreed: String
+  acquisitionSource: String
+  acquisitionDate: String
+  boxType: String
+  frameCount: Int
+  deploymentDate: String
+}
+
+type ShareFeeder {
+  _id: ID
+  username: String
+  name: String
+  latitude: String
+  longitude: String
+  status: String
+}
+
+
+  type Auth {
+    token: ID!
+    user: User
+  }
+
+  type Query {
+    me: User
+    user(username: String!): User
+    users: [User]
+    apiaries(username: String!): [Apiary]
+    apiary(_id: ID!): Apiary
+    hives(username: String!): [Hive]
+    hive(_id: ID!): Hive
+    shareFeeders(username: String!): [ShareFeeder]
+    shareFeeder(_id: ID!): ShareFeeder
+  }
+
+  input apiaryNew {
+    name: String
     username: String
-    email: String
-    fName: String
-    lName: String
-    address: String
-    city: String
-    zipCode: String
-    apiaryCount: Int
-    Apiary: [Apiary]
-      # SavedApiary: [Apiary]
-    # savedApiary: [new Apiary().schema]
-  }
-  # type Actions {
-  #   _id: ID!
-  #   actionType: String
-  #   resource: String
-  #   quantity: Int
-  #   uam: String
-  #   actionDate: date
-  #   link: String
-  #   savedUsers: [User]
-  # }
-
-  type Apiary {
-    _id: ID
-    name: String
-    Hive: [Hive]
-    ShareFeeder: [ShareFeeder]
-  }
-
-  input ApiaryInput {
-    name: String
   }
 
   input HiveInput {
@@ -47,43 +81,12 @@ const typeDefs = gql`
     name: String
   }
 
-  type Hive {
-    _id: ID
-    name: String
-    latitude: String
-    longitude: String
-    status: String
-    beeBreed: String
-    ApplicationSource: String
-    AcquisitionDate: String
-    boxType: String
-    frameCount: Int
-    DeploymentDate: String
-  }
-  type ShareFeeder {
-    _id: ID
-    name: String
-    latitude: String
-    longitude: String
-    status: String
-  }
-
-  type Auth {
-    token: ID!
-    user: User
-  }
-
-  type Query {
-    me: User
-  }
-
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    # addApiary(name: String!): User
-    addApiary(apiaryData: ApiaryInput): User
+    addApiary(apiaryNew: String!): Apiary
     addHive(hiveData: HiveInput): Apiary
-    addBeeFeeder(beeFeederData: BeeFeederInput): Apiary
+    addFeeder(feederFormData: String!): ShareFeeder
     removeApiary(_Id: ID!): User
   }
 `;

@@ -100,7 +100,7 @@ const Googlemap: React.VFC = () => {
   
 
   const form = (
-    <div
+    <div className="form-data"
       style={{
         padding: "1rem",
         flexBasis: "250px",

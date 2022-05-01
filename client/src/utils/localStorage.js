@@ -30,3 +30,36 @@ export const removeApiaryId = (_id) => {
 
   return true;
 };
+
+export const getSavedHiveIds = () => {
+  const savedHiveIds = localStorage.getItem("saved_hive")
+    ? JSON.parse(localStorage.getItem("saved_hive"))
+    : [];
+
+  return savedHiveIds;
+};
+
+export const savedHiveIds = (hiveIdArr) => {
+  if (hiveIdArr.length) {
+    localStorage.setItem("saved_hive", JSON.stringify(hiveIdArr));
+  } else {
+    localStorage.removeItem("saved_hive");
+  }
+};
+
+export const removeHiveId = (_id) => {
+  const savedHiveIds = localStorage.getItem("saved_hive")
+    ? JSON.parse(localStorage.getItem("saved_hive"))
+    : null;
+
+  if (!savedHiveIds) {
+    return false;
+  }
+
+  const updatedSavedHiveIds = savedHiveIds?.filter(
+    (savedHiveId) => savedHiveId !== _id
+  );
+  localStorage.setItem("saved_Hive", JSON.stringify(updatedSavedHiveIds));
+
+  return true;
+};

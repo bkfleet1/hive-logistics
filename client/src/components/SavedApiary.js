@@ -7,20 +7,18 @@ import {
   Button,
 } from "react-bootstrap";
 import { useQuery, useMutation } from "@apollo/client";
-import { GET_ME, GET_APIARY} from "../utils/queries";
+import { GET_ME } from "../utils/queries";
 import { REMOVE_APIARY } from "../utils/mutations";
 import { removeApiaryId } from "../utils/localStorage";
 import Auth from "../utils/auth";
+import SavedHive from "./SavedHive";
+import SavedShareFeeder from "./SavedShareFeeder";
 
 const SavedApiary = () => {
-   const { loading, data } = useQuery(GET_ME);
-  // const { loading, data } = useQuery(GET_APIARY);
-  // const { data } = useQuery(QUERY_USER);
-  //const { loading, data } = useQuery(QUERY_USER);
+  const { loading, data } = useQuery(GET_ME);
   const [removeApiary, { error }] = useMutation(REMOVE_APIARY);
 
   const userData = data?.me || {};
-  
 
   // create function that accepts the apiary's _id value as param and deletes  from the database
   const handleDeleteApiary = async (_id) => {
@@ -47,34 +45,38 @@ const SavedApiary = () => {
   if (loading) {
     return <h2>LOADING...</h2>;
   }
- console.log(userData.username);
+  console.log(userData.username);
+
   return (
     <>
-      <Jumbotron fluid className="text-light bg-dark">
-        <Container>
-        
-          <h1>Viewing {userData.username}'s apiaries!</h1>
-         
-        </Container>
-      </Jumbotron>
+      <h2>
+        {userData.savedApiary?.length
+          ? `Viewing ${userData.savedApiary.length} saved ${
+              userData.savedApiary.length === 1 ? "apiary" : "apiaries"
+            }:`
+          : "You have no saved apiary!"}
+      </h2>
+
       <Container>
-        <h2>
-          {userData.savedApiary?.length
-            ? `Viewing ${userData.savedApiary.length} saved ${
-                userData.savedApiary.length === 1 ? "apiary" : "apiaries"
-              }:`
-            : "You have no saved apiary!"}
-        </h2>
+        <Button variant="primary">Inspect</Button>{" "}
+        <Button variant="secondary">Feed</Button>{" "}
+        <Button variant="success">Treat</Button>{" "}
+        <Button variant="warning">Re-Queen</Button>{" "}
+        <Button variant="danger">Harvest</Button>{" "}
+      </Container>
+
+      <Container>
+        <title> Apiary </title>
         <CardColumns>
-          {userData.savedApiary?.map((apiary) => {
+          {userData.savedApiary?.map((Apiary) => {
             return (
-              <Card key={apiary._id} border="dark">
+              <Card key={Apiary._id} border="dark">
                 <Card.Body>
-                  <Card.Title>{apiary.name}</Card.Title>
-                  <p className="small">Name: {apiary.name}</p>
+                  <Card.Title>{Apiary.name}</Card.Title>
+                  <p className="small">Name: {Apiary.name}</p>
                   <Button
                     className="btn-block btn-danger"
-                    onClick={() => handleDeleteApiary(apiary._id)}
+                    onClick={() => handleDeleteApiary(Apiary._id)}
                   >
                     Delete this Apiary!
                   </Button>
@@ -87,6 +89,8 @@ const SavedApiary = () => {
           })}
         </CardColumns>
       </Container>
+      <SavedHive />
+      <SavedShareFeeder />
     </>
   );
 };

@@ -3,6 +3,7 @@ import { Form, Button, Alert } from "react-bootstrap";
 import { useMutation } from "@apollo/client";
 import { ADD_BEEFEEDER } from "../utils/mutations";
 import Auth from "../utils/auth";
+import { Container } from "react-bootstrap";
 
 const ShareFeeder = () => {
   // set initial form state
@@ -52,34 +53,40 @@ const ShareFeeder = () => {
     <>
       {/* This is needed for the validation functionality above */}
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-        {/* show alert if server response is bad */}
-        <Alert
-          dismissible
-          onClose={() => setShowAlert(false)}
-          show={showAlert}
-          variant="danger"
-        >
-          {error && <br>Added BeeBreed Failed.</br>}
-        </Alert>
+        <Container>
+          {/* show alert if server response is bad */}
+          <Alert
+            dismissible
+            onClose={() => setShowAlert(false)}
+            show={showAlert}
+            variant="danger"
+          >
+            {error && <br>Added BeeBreed Failed.</br>}
+          </Alert>
 
-        <Form.Group>
-         <h1>Share Feeders's Section</h1>
-          <Form.Label htmlFor="name">Name:</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Name:"
-            name="name"
-            onChange={handleInputChange}
-            value={beeFeederFormData.name}
-            required
-          />
-          <Form.Control.Feedback type="invalid">
-            Name is required!
-          </Form.Control.Feedback>
-        </Form.Group>
-         <Button disabled={!beeFeederFormData.name} type="submit" variant="success">
-          Add
-        </Button>
+          <Form.Group>
+            <h1>Share Feeders's Section</h1>
+            <Form.Label htmlFor="name">Name:</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Name:"
+              name="name"
+              onChange={handleInputChange}
+              value={beeFeederFormData.name}
+              required
+            />
+            <Form.Control.Feedback type="invalid">
+              Name is required!
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Button
+            disabled={!beeFeederFormData.name}
+            type="submit"
+            variant="success"
+          >
+            Add
+          </Button>
+        </Container>
       </Form>
     </>
   );

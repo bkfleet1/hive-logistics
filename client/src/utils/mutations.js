@@ -38,7 +38,7 @@ export const ADD_USER = gql`
 export const ADD_APIARY = gql`
   mutation addApiary($apiaryData: ApiaryInput) {
     addApiary(apiaryData: $apiaryData) {
-      savedApiary {
+      Apiary {
         name
       }
     }
@@ -78,6 +78,22 @@ export const REMOVE_APIARY = gql`
         _id
         name
       }
+    }
+  }
+`;
+
+export const REMOVE_HIVE = gql`
+  mutation removeHive($hiveData: HiveInput) {
+    removeHive(_id: $_id) {
+      _id
+    }
+  }
+`;
+
+export const REMOVE_SHAREFEEDER = gql`
+  mutation removeShareFeeder($beeFeeData: BeeFeederInput) {
+    removeHive(_id: $_id) {
+      _id
     }
   }
 `;

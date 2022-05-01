@@ -3,6 +3,7 @@ import { Form, Button, Alert } from "react-bootstrap";
 import { useMutation } from "@apollo/client";
 import { ADD_APIARY } from "../utils/mutations";
 import Auth from "../utils/auth";
+import { Container } from "react-bootstrap";
 
 const Apiary = () => {
   // set initial form state
@@ -39,9 +40,7 @@ const Apiary = () => {
     try {
       console.log(apiaryFormData);
       const { data } = await addApiary({
-        // addApiary({
-        // variables: {name:apiaryFormData }
-        //  variables: { ...apiaryFormData }
+
         variables: { apiaryData: { ...apiaryFormData } },
       });
     } catch (e) {
@@ -57,6 +56,7 @@ const Apiary = () => {
     <>
       {/* This is needed for the validation functionality above */}
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+      <Container>
         {/* show alert if server response is bad */}
         <Alert
           dismissible
@@ -86,6 +86,7 @@ const Apiary = () => {
         <Button disabled={!apiaryFormData.name} type="submit" variant="success">
           Add
         </Button>
+        </Container>
       </Form>
     </>
   );

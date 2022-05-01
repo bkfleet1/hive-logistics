@@ -1,11 +1,15 @@
-//  const mongoose = require("mongoose");
-// const { Schema } = mongoose;
-const { Schema, model } = require("mongoose");
+
+const mongoose = require('mongoose');
+
+const { Schema } = mongoose;
+// const { Schema, model } = require("mongoose");
 
 const bcrypt = require("bcrypt");
 
 // import schema from Apiary
 const Apiary = require("./Apiary");
+const Hive = require("./Hive");
+
 
 const userSchema = new Schema(
   {
@@ -45,7 +49,9 @@ const userSchema = new Schema(
       required: true,
     },
     // set savedApiary to be an array of data that adheres to the apiarySchema
-    savedApiary: [new Apiary().schema]
+      savedApiary: [Apiary.schema],
+      Hive: [Hive.schema]
+      
   },
   // set this to use virtual below
   {
@@ -75,5 +81,8 @@ userSchema.virtual('apiaryCount').get(function () {
   return this.savedApiary.length;
 });
 
-const User = model("User", userSchema);
+// const User = model("User", userSchema);
+// module.exports = User;
+const User = mongoose.model('User', userSchema);
+
 module.exports = User;

@@ -46,7 +46,7 @@ const resolvers = {
     //   return { token, user };
     // },
 
-    //  addApiary: async (parent, args) => {
+    //  addApiary: async (_parent, args) => {
     //   const apiary = await Apiary.create({ ...args });
     //   const token = signToken(apiary);
 
@@ -56,8 +56,8 @@ const resolvers = {
     addApiary: async (parent, { apiaryData }, context) => {
       console.log(context.user);
       if (context.user) {
-        const apiary = new Apiary({ hiveData });
-        apiary.save().then(() => console.log("Apiary Save"));
+         const apiary = new Apiary({ apiaryData });
+         apiary.save().then(() => console.log("Apiary Save"));
         const updatedUser = await User.findByIdAndUpdate(
           { _id: context.user._id },
           { $push: { savedApiary: apiaryData } },
@@ -82,23 +82,26 @@ const resolvers = {
     //   throw new AuthenticationError("You need to be logged in!");
     // },
 
+
     addHive: async (_parent, hiveData, context) => {
       console.log(context);
-      if (context.user) {
-        const hive = new Hive({ hiveData });
-        hive.save().then(() => console.log("Hive Save"));
-        await User.findByIdAndUpdate(
-          { _id: context.user._id },
+       if (context.user) {
+         const hive = new Hive({ hiveData });
+         hive.save().then(() => console.log("Hive Save"));
+        const updatedUser = await User.findByIdAndUpdate(
+           { _id: context.user._id },
           { $push: { Hive: hiveData } },
           { new: true }
         );
-        return addHive;
+        return updatedUser;
       }
     },
 
     addBeeFeeder: async (_parent, beeFeederData, context) => {
       console.log(beeFeederData);
       if (context.user) {
+         const hive = new ShareFeeder({ hiveData });
+         hive.save().then(() => console.log("ShareFeeder Save"));
         const feeder = new ShareFeeder({ beeFeederData });
         await User.findByIdAndUpdate(
           { _id: context.user._id },
@@ -109,17 +112,17 @@ const resolvers = {
       }
     },
 
-    // removeApiary: async (_parent, { _id }, context) => {
-    //   if (context.user) {
-    //     const updatedUser = await User.findOneAndUpdate(
-    //       { _id: context.user._id },
-    //       { $pull: { savedApiary: { _id } } },
-    //       { new: true }
-    //     );
-    //     return updatedUser;
-    //   }
-    //   throw new AuthenticationError("Not logged in");
-    // },
+    removeApiary: async (_parent, { _id }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { savedApiary: { _id } } },
+          { new: true }
+        );
+        return updatedUser;
+      }
+      throw new AuthenticationError("Not logged in");
+    },
   },
 };
 

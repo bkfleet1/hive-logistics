@@ -26,3 +26,8 @@ input {
   font-size: larger;
 }
 
+iframe, .map2 {
+  width: 600px;
+  height: 600px;
+}
+

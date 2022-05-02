@@ -9,7 +9,7 @@
   padding: 0;
   
 }
-iframe, map {
+iframe, .map2 {
   width: 600px;
   height: 600px;
 }
@@ -21,7 +21,6 @@ iframe, map {
   margin: 0.rem;
    font-size: larger; 
   text-align: center;
-  display: flex;
   justify-content:space-between;
   background-color: var(--primary-color)
 }
@@ -31,6 +30,7 @@ iframe, map {
   padding: 0.25rem;
   box-sizing: border-box;
   font-size: larger;
+  background-color: var(--primary-color)
 }
 
 .marker label {
@@ -54,7 +54,7 @@ label, h3 {
   margin-top: 1rem;
   margin-bottom: 0.5rem;
   font-size: large;
-  font-weight: bold;
+  font-weight: bolder;
 }
 
 input {
@@ -68,12 +68,22 @@ input {
   display: flex;
   justify-content:space-around;
   width: 100%;
-  background-color:var(--primary-color)
+  background-color:var(--primary-color);
+  
 }
 
 
 .coordinates{
-  display: inline;
+  display: flex;
+  justify-content:center;
+  flex-direction:column;
+  
+  
 
 }
 
+.btn{
+  background-color: var(--primary-color);
+  font-weight:bold;
+  width: 5%;
+}

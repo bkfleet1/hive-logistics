@@ -149,7 +149,7 @@ const Googlemap: React.VFC = () => {
       />
       <br />
 
-      <button onClick={() => setClicks([])}>Clear</button>
+      <button className="btn"onClick={() => setClicks([])}>Clear</button>
     </div>
   );
 
@@ -161,6 +161,7 @@ const Googlemap: React.VFC = () => {
         render={render}
       >
         <Map
+        className="map2"
           mapTypeId={mapType}
           center={center}
           onClick={onClick}

@@ -57,9 +57,30 @@ label, h3 {
   font-weight: bold;
 }
 
-input {
-  width: 100%;
+.iFDate {
+  width: 250px;
   padding: 0.25rem;
   box-sizing: border-box;
-  font-size: larger;
+  /* font-size: larger; */
+}
+
+.iFGeo {
+  width: 250px;
+  padding: 0.25rem;
+  box-sizing: border-box;
+  /* font-size: larger; */
+}
+
+.iFDrop {
+  width: 400px;
+  padding: 0.25rem;
+  box-sizing: border-box;
+  /* font-size: larger; */
+}
+
+.iFText {
+  max-width: 500px;
+  padding: 0.25rem;
+  box-sizing: border-box;
+  border-radius: 6px;
 }

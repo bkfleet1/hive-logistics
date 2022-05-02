@@ -17,6 +17,31 @@ const typeDefs = gql`
     # SavedApiary: [Apiary]
     # savedApiary: [new Apiary().schema]
   }
+
+  type Hive {
+    _id: ID
+    name: String
+    lat: String
+    lng: String
+    status: String
+    beeBreed: String
+    ApplicationSource: String
+    AcquisitionDate: String
+    boxType: String
+    frameCount: Int
+    DeploymentDate: String
+  }
+
+  type ShareFeeder {
+    _id: ID
+    name: String
+    lat: String
+    lng: String
+    status: String
+  }
+
+
+
   # type Actions {
   #   _id: ID!
   #   actionType: String
@@ -47,26 +72,7 @@ const typeDefs = gql`
     name: String
   }
 
-  type Hive {
-    _id: ID
-    name: String
-    latitude: String
-    longitude: String
-    status: String
-    beeBreed: String
-    ApplicationSource: String
-    AcquisitionDate: String
-    boxType: String
-    frameCount: Int
-    DeploymentDate: String
-  }
-  type ShareFeeder {
-    _id: ID
-    name: String
-    latitude: String
-    longitude: String
-    status: String
-  }
+  
 
   type Auth {
     token: ID!

@@ -8,11 +8,11 @@ const shareFeeSchema = new Schema({
     required: true,
   },
 
-  longitude: {
+  lat: {
     type: String,
     required: true,
   },
-  longitude: {
+  lng: {
     type: String,
     required: true,
   },

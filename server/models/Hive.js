@@ -6,11 +6,11 @@ const hiveSchema = new Schema({
     required: true,
   },
 
-  latitude: {
+  lat: {
     type: String,
   },
 
-  longitude: {
+  lng: {
     type: String,
     required: true,
   },

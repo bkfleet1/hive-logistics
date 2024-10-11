@@ -15,14 +15,14 @@
     "apollo-server-express": "*",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
-    "create-react-app": "^1.2.1",
-    "express": "^4.17.3",
+    "create-react-app": "^1.5.2",
+    "express": "^4.21.1",
     "graphql": "^15.5.0",
     "jsonwebtoken": "*",
-    "mongoose": "^6.0.13",
+    "mongoose": "^6.11.3",
     "stripe": "^8.217.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.3"
+    "nodemon": "^2.0.22"
   }
 }
